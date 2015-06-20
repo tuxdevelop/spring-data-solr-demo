@@ -1,0 +1,210 @@
+== Spring Data Repositories
+
+=== CRUD Operations
+
+=== CRUD Operations
+
+[source, language="java"]
+----
+public interface StoreCrudRepository
+                extends SolrCrudRepository<Store, String> {
+
+}
+----
+
+[source, language="java"]
+----
+@Autowired
+private StoreCrudRepository storeCrudRepository;
+
+...
+    storeCrudRepository.save(store);
+    storeCrudRepository.save(storeCollection)
+    storeCrudRepository.delete(store);
+    storeCrudRepository.delete("1");
+    storeCrudRepository.deteleAll();
+    storeCrudRepository.count();
+    storeCrudRepository.findOne("1");
+    storeCrudRepository.findAll();
+...
+----
+
+
+=== Creating Queries
+
+=== Creating Queries
+
+[source, language="java"]
+----
+@SolrDocument
+public class Store {
+
+    @Id
+    @Field("id")
+    private String id;
+    @Field("name")
+    private String name;
+    @Field("zipCode")
+    private String zipCode;
+    @Field("city")
+    private String city;
+    @Field("street")
+    private String street;
+    @Field("location")
+    private Point location;
+}
+----
+
+=== Creating from Methode Names
+
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+
+    Collection<Store> findByName(final String name);
+
+}
+----
+
+=== Creating from Methode Names
+
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+
+    Collection<Store> findByName(final String name);
+
+}
+----
+
+==== Solr Query
+
+----
+    q=name: ?0
+----
+
+=== Creating from Methode Names
+
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+
+    Collection<Store> findByName(final String name);
+    Collection<Store> findByLocationNear(final Point point,
+                                         final Distance distance);
+
+}
+----
+
+
+=== Creating from Methode Names
+
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+
+    Collection<Store> findByName(final String name);
+    Collection<Store> findByLocationNear(final Point point,
+                                         final Distance distance);
+
+}
+----
+
+==== Solr Query
+
+----
+q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
+----
+
+=== Creating from Methode Names
+
+|====
+
+|And|findByNameAndPopularity|q=name:?0 AND popularity:?1
+|Or |findByNameOrPopularity |q=name:?0 OR popularity:?1
+|Is|findByName|q=name:?0
+|Not|findByNameNot|q=-name:?0
+
+|====
+
+
+=== Creating from Methode Names
+
+|====
+
+|IsNull |findByNameIsNull|q=-name:[* TO *]
+|IsNotNull|findByNameIsNotNull|q=name:[* TO *]
+|Between| findByPopularityBetween|q=popularity:[?0 TO ?1]
+|LessThan|findByPopularityLessThan|q=popularity:[* TO ?0}
+
+|====
+
+=== Creating from Methode Names
+
+|====
+
+|LessThanEqual|findByPopularityLessThanEqual|q=popularity:[* TO ?0]
+|GreaterThan|findByPopularityGreaterThan|q=popularity:{?0 TO *]
+|GreaterThanEqual|findByPopularityGreaterThanEqual|q=popularity:[?0 TO *]
+|Before|findByLastModifiedBefore|q=last_modified:[* TO ?0}
+
+|====
+
+=== Creating from Methode Names
+
+|====
+
+|After|findByLastModifiedAfter|q=last_modified:{?0 TO *]
+|Like|findByNameLike|q=name:?0*
+|NotLike|findByNameNotLike|q=-name:?0*
+|StartingWith|findByNameStartingWith|q=name:?0*
+
+|====
+
+=== Creating from Methode Names
+
+|====
+
+|EndingWith|findByNameEndingWith|q=name:*?0
+|Containing|findByNameContaining|q=name:*?0*
+|Matches|findByNameMatches|q=name:?0
+|In|findByNameIn(Collection<String> names)|q=name:(?0…​ )
+
+|====
+
+=== Creating from Methode Names
+
+|====
+
+|NotIn|findByNameNotIn(Collection<String> names)|q=-name:(?0…​ )
+|Within|findByStoreWithin(Point, Distance)|q={!geofilt pt=?0.latitude,?0.longitude sfield=store d=?1}
+|Near|findByStoreNear(Point, Distance)|q={!bbox pt=?0.latitude,?0.longitude sfield=store d=?1}
+
+|====
+
+=== Creating from Methode Names
+
+|====
+
+|Near|findByStoreNear(Box)|q=store[?0.start.latitude,?0.start.longitude TO ?0.end.latitude,?0.end.longitude]
+|True|findByAvailableTrue|q=inStock:true
+|False|findByAvailableFalse|q=inStock:false
+|OrderBy|findByAvailableTrueOrderByNameDesc|q=inStock:true&sort=name desc
+
+|====
+
+=== Using @Query
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+
+    @Query("name:?0")
+    Collection<Store> findByNameQuery(final String name);
+
+}
+----

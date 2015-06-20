@@ -1,0 +1,17 @@
+== Solr Operations
+
+=== Partial Updates
+
+[source, language="java"]
+----
+@Autowired
+private SolrTemplate solrTemplate;
+
+@Override
+public void updateProducts(String id, Collection<String> products) {
+    final PartialUpdate partialUpdate = new PartialUpdate("id", id);
+    partialUpdate.add("products", products);
+    solrTemplate.saveBean(partialUpdate);
+    solrTemplate.commit();
+}
+----

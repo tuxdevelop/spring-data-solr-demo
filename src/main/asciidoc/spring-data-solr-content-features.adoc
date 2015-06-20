@@ -1,0 +1,4 @@
+== Features
+
+include::spring-data-solr-repositories.adoc[]
+include::spring-data-solr-operations.adoc[]

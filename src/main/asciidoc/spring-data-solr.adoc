@@ -1,0 +1,26 @@
+= Spring Data Solr
+Marcel Becker <marcel.becker@1und1.de>
+:backend: revealjs
+:revealjs_theme: solarized_tux
+:revealjs_control: true
+:revealjs_transition: zoom
+:revealjs_progress: true
+:source-highlighter: coderay
+:imagesdir: images
+:data-uri:
+:toc:
+
+== About me
+
+* Software Developer
+** 1&1 Internet AG
+* github
+** tuxdevelop.github.io
+
+== Table of Content
+
+* Spring Data
+* Spring Data Solr
+
+include::spring-data.adoc[]
+include::spring-data-solr-content.adoc[]

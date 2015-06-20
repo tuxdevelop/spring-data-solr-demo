@@ -1,0 +1,5 @@
+= Spring Data Solr Demo
+
+This demo projects covers the basic functionality of the Spring Data Solr project
+
+

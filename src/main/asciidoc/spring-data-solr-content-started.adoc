@@ -1,0 +1,84 @@
+== Getting Started
+
+* Main Components
+** SolrDocument
+** SolrServer
+** SolrTemplate
+** SolrRepositories
+
+=== Solr Document
+[source, language="java"]
+----
+@SolrDocument
+public class Store {
+
+    @Id
+    @Field("id")
+    private String id;
+    @Field("name")
+    private String name;
+    @Field("zipCode")
+    private String zipCode;
+    @Field("city")
+    private String city;
+    @Field("street")
+    private String street;
+    @Field("location")
+    private Point location;
+}
+----
+
+=== Solr Server
+
+[source, language="java"]
+----
+@Bean
+public EmbeddedSolrServerFactoryBean solrServer() {
+  final EmbeddedSolrServerFactoryBean factoryBean
+      = new EmbeddedSolrServerFactoryBean();
+  factoryBean.setSolrHome(solrHome);
+  return factoryBean;
+}
+----
+
+=== Solr Server
+
+[source, language="xml"]
+----
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:solr="http://www.springframework.org/schema/data/solr"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/data/solr
+  http://www.springframework.org/schema/data/solr/spring-solr-1.0.xsd">
+
+ <solr:solr-server id="solrServer" url="http://locahost:8983/solr" />
+</beans>
+----
+
+=== Solr Template
+
+[source, language="java"]
+----
+@Autowired
+private SolrServer solrServer
+
+@Bean
+public SolrTemplate solrTemplate() throws Exception{
+    return new SolrTemplate(solrServer);
+}
+----
+
+=== Solr Repository
+
+[source, language="java"]
+----
+public interface StoreFinderRepository
+        extends SolrRepository<Store, String> {
+}
+
+public interface StoreRepository
+        extends SolrCrudRepository<Store, String> {
+}
+----

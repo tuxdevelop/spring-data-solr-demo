@@ -1,0 +1,6 @@
+== Spring Data Solr
+
+include::spring-data-solr-content-started.adoc[]
+include::spring-data-solr-content-features.adoc[]
+
+
