@@ -145,9 +145,6 @@ public class SolrInitializer {
             } else {
                 latitude = latitudeRead;
             }
-            if (longtitude.equals(35152761)) {
-                System.out.println(latitude);
-            }
             return new Point(latitude, longtitude);
         }
     }

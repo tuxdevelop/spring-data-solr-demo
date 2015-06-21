@@ -27,6 +27,10 @@ public class StoreRepositoryIT {
     @Autowired
     private SolrInitializer solrInitializer;
 
+    /*
+     * Search IT
+     */
+
     @Test
     public void findByNameIT() {
         final String nameToFind = "Steaming Kettle";
@@ -51,7 +55,14 @@ public class StoreRepositoryIT {
         final Collection<Store> stores = storeRepository.findByLocationNear(point, distance);
         assertThat(stores).isNotEmpty();
         assertThat(stores).hasSize(2);
+        for (Store store : stores) {
+            System.out.println(store);
+        }
     }
+
+    /*
+     * Solr Operations IT
+     */
 
     @Test
     public void updateProductsIT() {
