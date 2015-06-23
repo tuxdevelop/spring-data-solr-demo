@@ -47,6 +47,22 @@ public class StoreRepositoryIT {
         assertThat(stores).hasSize(1);
     }
 
+    @Test
+    public void findByNameFilterQueryIT() {
+        final String nameToFind = "Steaming Kettle";
+        final Collection<Store> stores = storeRepository.findByNameFilterQuery(nameToFind);
+        assertThat(stores).isNotEmpty();
+        assertThat(stores).hasSize(1);
+    }
+
+    @Test
+    public void findStoreByNameFilterQueryIT() {
+        final String nameToFind = "Steaming Kettle";
+        final Collection<Store> stores = storeRepository.findStoreByNameFilterQuery(nameToFind);
+        assertThat(stores).isNotEmpty();
+        assertThat(stores).hasSize(1);
+    }
+
 
     @Test
     public void findByLocationNearIT() {
@@ -58,6 +74,29 @@ public class StoreRepositoryIT {
         for (Store store : stores) {
             System.out.println(store);
         }
+    }
+
+    @Test
+    public void findByProductsInIT() {
+        final Collection<String> products = new LinkedList<>();
+        products.add("Lunch");
+        products.add("Oven-warmed Food");
+        products.add("Reserve Amenity");
+        final Collection<Store> stores = storeRepository.findByProductsIn(products);
+        assertThat(stores).isNotEmpty();
+        System.out.println("Size: " + stores.size());
+    }
+
+    @Test
+    public void findByPoductsInAndLocationNearIT() {
+        final Collection<String> products = new LinkedList<>();
+        products.add("Lunch");
+        products.add("Oven-warmed Food");
+        products.add("Reserve Amenity");
+        final Point point = new Point(43, -71);
+        final Distance distance = new Distance(10);
+        final Collection<Store> stores = storeRepository.findByProductsInAndLocationNear(products, point, distance);
+        assertThat(stores).hasSize(1);
     }
 
     /*

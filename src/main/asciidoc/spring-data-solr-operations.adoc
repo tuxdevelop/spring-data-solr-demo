@@ -15,3 +15,35 @@ public void updateProducts(String id, Collection<String> products) {
     solrTemplate.commit();
 }
 ----
+
+=== Filter Query
+
+=== Filter Query
+
+==== @Query Annotation
+
+[source, language="java"]
+----
+
+@Query(value = "*:*", filters = {"name:=?0"})
+Collection<Store> findByNameFilterQuery(final String name);
+
+----
+
+=== Filter Query
+
+==== Solr Template
+
+[source, language="java"]
+----
+@Override
+public Collection<Store> FindStoreByNameFilterQuery(final String name){
+   final SimpleQuery query = new SimpleQuery(new Criteria());
+   final FilterQuery filterQuery =
+            new SimpleFilterQuery(new Criteria("name").is(name));
+   query.addFilterQuery(filterQuery);
+   ScoredPage<Store> result =
+            solrTemplate.queryForPage(query, Store.class);
+   return result.getContent();
+}
+----

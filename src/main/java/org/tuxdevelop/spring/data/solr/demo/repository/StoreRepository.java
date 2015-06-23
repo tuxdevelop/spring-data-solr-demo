@@ -13,8 +13,16 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
 
     Collection<Store> findByName(final String name);
 
+    Collection<Store> findByProductsIn(final Collection<String> products);
+
+    Collection<Store> findByProductsInAndLocationNear(final Collection<String> products, final Point point, final
+    Distance distance);
+
     @Query("name:?0")
     Collection<Store> findByNameQuery(final String name);
+
+    @Query(value = "*:*", filters = {"name:=?0"})
+    Collection<Store> findByNameFilterQuery(final String name);
 
     Collection<Store> findByLocationNear(final Point point, final Distance distance);
 

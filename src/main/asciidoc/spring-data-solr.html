@@ -209,7 +209,17 @@ table.CodeRay td.code>pre{padding:0}
     partialUpdate.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>, products);
     solrTemplate.saveBean(partialUpdate);
     solrTemplate.commit();
-}</code></pre></div></div></section></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script type="text/javascript">// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+}</code></pre></div></div></section><section id="_filter_query"><h2>Filter Query</h2></section><section id="_filter_query_2"><h2>Filter Query</h2><section id="__query_annotation"><h2>@Query Annotation</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>, filters = {<span class="string"><span class="delimiter">&quot;</span><span class="content">name:=?0</span><span class="delimiter">&quot;</span></span>})
+<span class="predefined-type">Collection</span>&lt;Store&gt; findByNameFilterQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name);</code></pre></div></div></section></section><section id="_filter_query_3"><h2>Filter Query</h2><section id="_solr_template_2"><h2>Solr Template</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="predefined-type">Collection</span>&lt;Store&gt; FindStoreByNameFilterQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name){
+   <span class="directive">final</span> SimpleQuery query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria());
+   <span class="directive">final</span> FilterQuery filterQuery =
+            <span class="keyword">new</span> SimpleFilterQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>).is(name));
+   query.addFilterQuery(filterQuery);
+   ScoredPage&lt;Store&gt; result =
+            solrTemplate.queryForPage(query, Store.class);
+   <span class="keyword">return</span> result.getContent();
+}</code></pre></div></div></section></section></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script type="text/javascript">// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
