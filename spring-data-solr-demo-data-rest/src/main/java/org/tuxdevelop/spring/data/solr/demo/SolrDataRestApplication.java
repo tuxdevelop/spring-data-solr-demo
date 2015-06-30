@@ -12,7 +12,7 @@ import javax.annotation.PreDestroy;
 
 @SpringBootApplication
 @EnableSolrRepositories(basePackages = "org.tuxdevelop.spring.data.solr.demo.repository")
-public class SolrApplication {
+public class SolrDataRestApplication {
 
     @Autowired
     private SolrInitializer solrInitializer;
@@ -21,7 +21,7 @@ public class SolrApplication {
     private StoreRepository storeRepository;
 
     public static void main(final String[] args) {
-        SpringApplication.run(SolrApplication.class, args);
+        SpringApplication.run(SolrDataRestApplication.class, args);
     }
 
     @PostConstruct
