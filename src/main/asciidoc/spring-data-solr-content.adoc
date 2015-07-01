@@ -1,5 +1,13 @@
 == Spring Data Solr
 
+== What You Get
+
+* High level repository abstractions with multicore support
+* Annotations for Boost-, Facet- and Highlighting
+* Customizable type mappings and type conversions
+* Solr template supporting fluent query api
+* Exception translation to Spring's portable Data Access exception hierarchy
+
 include::spring-data-solr-content-started.adoc[]
 include::spring-data-solr-content-features.adoc[]
 

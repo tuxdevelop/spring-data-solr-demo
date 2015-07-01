@@ -16,6 +16,8 @@ Marcel Becker <marcel.becker@1und1.de>
 ** 1&1 Internet AG
 * github
 ** tuxdevelop.github.io
+* Mail
+** mailto:marcel.becker@1und1.de[marcel.becker@1und1.de]
 
 == Table of Content
 
@@ -23,4 +25,5 @@ Marcel Becker <marcel.becker@1und1.de>
 * Spring Data Solr
 
 include::spring-data.adoc[]
+
 include::spring-data-solr-content.adoc[]

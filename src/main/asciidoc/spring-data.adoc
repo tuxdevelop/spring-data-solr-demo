@@ -1,3 +1,15 @@
 == Spring Data
 
 image::spring-data-project-logo.png[]
+
+=== Project Goals
+
+* Easy access to data store technologies
+** RDBMS
+** Non-RDBMS
+** Map-Reduced Frameworks
+** Cloud Bases Services
+
+=== Supported Stores
+
+http://projects.spring.io/spring-data[Spring Data Project]
