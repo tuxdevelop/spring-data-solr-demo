@@ -55,7 +55,7 @@ public class Store {
 }
 ----
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 [source, language="java"]
 ----
@@ -67,7 +67,7 @@ public interface StoreFinderRepository
 }
 ----
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 [source, language="java"]
 ----
@@ -85,7 +85,7 @@ public interface StoreFinderRepository
     q=name: ?0
 ----
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 [source, language="java"]
 ----
@@ -100,7 +100,7 @@ public interface StoreFinderRepository
 ----
 
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 [source, language="java"]
 ----
@@ -120,7 +120,7 @@ public interface StoreFinderRepository
 q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 ----
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -132,7 +132,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 |====
 
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -143,7 +143,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 
 |====
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -154,7 +154,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 
 |====
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -165,7 +165,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 
 |====
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -176,7 +176,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 
 |====
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
@@ -186,7 +186,7 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 
 |====
 
-=== Creating from Methode Names
+=== Creating from Method Names
 
 |====
 
