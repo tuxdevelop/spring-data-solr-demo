@@ -99,22 +99,16 @@
                         <groupId>org.eclipse.jetty.orbit</groupId>
                         <artifactId>javax.servlet</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.restlet.jee</groupId>
+                        <artifactId>org.restlet</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.restlet.jee</groupId>
+                        <artifactId>org.restlet.ext.servlet</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
-
-            <!-- org. restlet -->
-            <dependency>
-                <groupId>org.restlet.jee</groupId>
-                <artifactId>org.restlet.ext.servlet</artifactId>
-                <version>2.0.15</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.restlet.jee</groupId>
-                <artifactId>org.restlet</artifactId>
-                <version>2.0.15</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
