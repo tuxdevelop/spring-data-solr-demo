@@ -36,11 +36,6 @@
 				<groupId>org.apache.solr</groupId>
 				<version>${solr.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.apache.solr</groupId>
-				<artifactId>solr-core</artifactId>
-				<version>${solr.version}</version>
-			</dependency>
 			<!-- spring.io platform bom -->
 			<dependency>
 				<groupId>io.spring.platform</groupId>
