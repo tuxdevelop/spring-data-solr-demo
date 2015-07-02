@@ -14,23 +14,23 @@ import javax.annotation.PreDestroy;
 @EnableSolrRepositories(basePackages = "org.tuxdevelop.spring.data.solr.demo.repository")
 public class SolrDataRestApplication {
 
-    @Autowired
-    private SolrInitializer solrInitializer;
+	@Autowired
+	private SolrInitializer solrInitializer;
 
-    @Autowired
-    private StoreRepository storeRepository;
+	@Autowired
+	private StoreRepository storeRepository;
 
-    public static void main(final String[] args) {
-        SpringApplication.run(SolrDataRestApplication.class, args);
-    }
+	public static void main(final String[] args) {
+		SpringApplication.run(SolrDataRestApplication.class, args);
+	}
 
-    @PostConstruct
-    public void init() throws Exception {
-        solrInitializer.importStarbucks();
-    }
+	@PostConstruct
+	public void init() throws Exception {
+		solrInitializer.importStarbucks();
+	}
 
-    @PreDestroy
-    public void deleteAll() {
-        storeRepository.deleteAll();
-    }
+	@PreDestroy
+	public void deleteAll() {
+		storeRepository.deleteAll();
+	}
 }
