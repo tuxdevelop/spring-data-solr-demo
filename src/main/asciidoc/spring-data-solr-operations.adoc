@@ -47,3 +47,43 @@ public Collection<Store> FindStoreByNameFilterQuery(final String name){
    return result.getContent();
 }
 ----
+
+=== Facetting
+
+=== Facetting
+
+[source, language="java"]
+----
+@Query(value = "*:*", filters = "products:?0")
+@Facet(fields = {"name"})
+FacetPage<Store> findFacetOnName(@Param("products")
+        final List<String> products, final Pageable page);
+----
+
+[source, language="java"]
+----
+@Query(value = "zipCode:?0")
+@Facet(fields = {"products"})
+FacetPage<Store> findByZipCodeFacetOnProducts(
+    @Param("zipCode") final String zipCode,
+    final Pageable page);
+----
+
+=== Facetting
+
+[source, language="java"]
+----
+@Override
+public FacetPage<Store> findFacetOnNameSolrTemplate(
+        final List<String> products) {
+  final String parameter = convertListToParameterString(products);
+  final FacetQuery facetQuery = new SimpleFacetQuery(
+                new SimpleStringCriteria("*:*"))
+      .setFacetOptions(new FacetOptions("name"));
+  final FilterQuery filterQuery = new SimpleFilterQuery(
+                new SimpleStringCriteria("products:" + parameter));
+  facetQuery.setPageRequest(new PageRequest(0, 20));
+  facetQuery.addFilterQuery(filterQuery);
+  return solrTemplate.queryForFacetPage(facetQuery, Store.class);
+}
+----

@@ -23,6 +23,7 @@ Marcel Becker <marcel.becker@1und1.de>
 
 * Spring Data
 * Spring Data Solr
+* Spring Data Rest
 
 include::spring-data.adoc[]
 
