@@ -4,8 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
+import org.springframework.data.solr.core.query.result.FacetFieldEntry;
+import org.springframework.data.solr.core.query.result.FacetPage;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tuxdevelop.spring.data.solr.demo.configuration.ITConfiguration;
@@ -14,6 +18,7 @@ import org.tuxdevelop.spring.data.solr.demo.util.SolrInitializer;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -125,4 +130,65 @@ public class StoreRepositoryIT {
         solrInitializer.importStarbucks();
     }
 
+    /*
+     * Facetting
+     */
+
+    @Test
+    public void findByZipCodeFacetOnProductsIT() {
+        final String zipCode = "03833-2105";
+        final FacetPage<Store> response = storeRepository.findByZipCodeFacetOnProducts(zipCode, new
+                PageRequest(0, 20));
+        assertThat(response).isNotNull();
+        assertThat(response.getContent()).isNotEmpty();
+        assertThat(response.getContent()).hasSize(3);
+        response.getContent().forEach(System.err::println);
+        Page<FacetFieldEntry> page = response.getFacetResultPage("products");
+        final int size = page.getSize();
+        System.err.println("size:" + size);
+        final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("products");
+        List<FacetFieldEntry> content = facetResultPage.getContent();
+        System.err.println("content.size:" + content.size());
+        for (final FacetFieldEntry facetFieldEntry : content) {
+            System.err.println("Found: " + facetFieldEntry.getValue());
+        }
+    }
+
+    @Test
+    public void findFacetOnNameIT() {
+        final List<String> products = new LinkedList<>();
+        products.add("Lunch");
+        final FacetPage<Store> response = storeRepository.findFacetOnName(products, new PageRequest(0, 20));
+        assertThat(response).isNotNull();
+        assertThat(response.getContent()).isNotEmpty();
+        response.getContent().forEach(System.err::println);
+        Page<FacetFieldEntry> page = response.getFacetResultPage("name");
+        final int size = page.getSize();
+        System.err.println("size:" + size);
+        final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("name");
+        List<FacetFieldEntry> content = facetResultPage.getContent();
+        System.err.println("content.size:" + content.size());
+        for (final FacetFieldEntry facetFieldEntry : content) {
+            System.err.println("Found: " + facetFieldEntry.getValue());
+        }
+    }
+
+    @Test
+    public void findFacetOnNameSolrTemplateIT() {
+        final List<String> products = new LinkedList<>();
+        products.add("Lunch");
+        final FacetPage<Store> response = storeRepository.findFacetOnNameSolrTemplate(products);
+        assertThat(response).isNotNull();
+        assertThat(response.getContent()).isNotEmpty();
+        response.getContent().forEach(System.err::println);
+        Page<FacetFieldEntry> page = response.getFacetResultPage("name");
+        final int size = page.getSize();
+        System.err.println("size:" + size);
+        final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("name");
+        List<FacetFieldEntry> content = facetResultPage.getContent();
+        System.err.println("content.size:" + content.size());
+        for (final FacetFieldEntry facetFieldEntry : content) {
+            System.err.println("Found: " + facetFieldEntry.getValue());
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package org.tuxdevelop.spring.data.solr.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class Store {
     private Collection<String> products;
     @Field("services")
     private Collection<String> services;
+    @JsonIgnore
     @Field("location")
     private Point location;
 
