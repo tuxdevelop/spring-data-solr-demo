@@ -11,6 +11,7 @@
     <modules>
         <module>spring-data-solr-demo-common</module>
         <module>spring-data-solr-demo-data-rest</module>
+        <module>spring-data-solr-demo-jaxrs</module>
     </modules>
 
     <properties>
