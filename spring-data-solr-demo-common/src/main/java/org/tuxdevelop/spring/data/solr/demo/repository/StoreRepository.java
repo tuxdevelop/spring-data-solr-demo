@@ -18,10 +18,10 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
 
     Collection<Store> findByName(@Param("name") final String name);
 
-    Collection<Store> findByProductsIn(final Collection<String> products);
+    Collection<Store> findByProductsIn(@Param("products") final Collection<String> products);
 
-    Collection<Store> findByProductsInAndLocationNear(final Collection<String> products, final Point point, final
-    Distance distance);
+    Collection<Store> findByProductsInAndLocationNear(@Param("products") final Collection<String> products, @Param
+            ("point") final Point point, final @Param("distance") Distance distance);
 
     @Query("name:?0")
     Collection<Store> findByNameQuery(@Param("name") final String name);
@@ -29,7 +29,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
     @Query(value = "*:*", filters = {"name:=?0"})
     Collection<Store> findByNameFilterQuery(@Param("name") final String name);
 
-    Collection<Store> findByLocationNear(final Point point, final Distance distance);
+    Collection<Store> findByLocationNear(@Param("point") final Point point, @Param("distance") final Distance distance);
 
     @Query(value = "zipCode:?0")
     @Facet(fields = {"products"})
