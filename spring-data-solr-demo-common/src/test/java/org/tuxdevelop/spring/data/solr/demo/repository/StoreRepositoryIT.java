@@ -8,8 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
-import org.springframework.data.solr.core.query.result.FacetFieldEntry;
-import org.springframework.data.solr.core.query.result.FacetPage;
+import org.springframework.data.solr.core.query.result.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tuxdevelop.spring.data.solr.demo.configuration.ITConfiguration;
@@ -189,6 +188,28 @@ public class StoreRepositoryIT {
         System.err.println("content.size:" + content.size());
         for (final FacetFieldEntry facetFieldEntry : content) {
             System.err.println("Found: " + facetFieldEntry.getValue());
+        }
+    }
+
+    /*
+     * Grouping
+     */
+
+    @Test
+    public void groupByZipCodeIT() {
+        final String lunch = "Lunch";
+        final List<String> products = new LinkedList<>();
+        products.add(lunch);
+        final GroupPage<Store> response = storeRepository.groupByZipCode(products);
+        System.err.println("-----------------------");
+        GroupResult<Store> groupResult = response.getGroupResult("zipCode");
+        Page<GroupEntry<Store>> groupEntries = groupResult.getGroupEntries();
+        for (final GroupEntry<Store> groupEntry : groupEntries) {
+            final String groupValue = groupEntry.getGroupValue();
+            System.err.println("groupValue: " + groupValue);
+            final List<Store> groupContet = groupEntry.getResult().getContent();
+            System.err.println("Members of the group: ");
+            groupContet.forEach(System.err::println);
         }
     }
 }

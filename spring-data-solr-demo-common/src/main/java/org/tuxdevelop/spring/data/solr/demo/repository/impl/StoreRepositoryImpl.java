@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.core.query.*;
 import org.springframework.data.solr.core.query.result.FacetPage;
+import org.springframework.data.solr.core.query.result.GroupPage;
 import org.springframework.data.solr.core.query.result.ScoredPage;
 import org.tuxdevelop.spring.data.solr.demo.domain.Store;
 import org.tuxdevelop.spring.data.solr.demo.repository.StoreCrudOperations;
@@ -45,10 +46,24 @@ public class StoreRepositoryImpl implements StoreCrudOperations {
         return solrTemplate.queryForFacetPage(facetQuery, Store.class);
     }
 
+    @Override
+    public GroupPage<Store> groupByZipCode(final List<String> products) {
+        final Field zipCodeField = new SimpleField("zipCode");
+        final Query query = new SimpleQuery(new Criteria("products").contains(products));
+        final SimpleQuery groupQuery = new SimpleQuery(new SimpleStringCriteria("*:*"));
+        final GroupOptions groupOptions = new GroupOptions()
+                .addGroupByField(zipCodeField)
+                .addGroupByQuery(query);
+        groupQuery.setGroupOptions(groupOptions);
+        return solrTemplate.queryForGroupPage(groupQuery, Store.class);
+    }
+
     private String convertListToParameterString(final List<String> parameterList) {
         final String temp = parameterList.toString();
         final String temp1 = temp.replace("]", "");
         final String result = temp1.replace("[", "");
         return result;
     }
+
+
 }

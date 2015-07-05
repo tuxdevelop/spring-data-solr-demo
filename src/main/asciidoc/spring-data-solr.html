@@ -240,6 +240,18 @@ FacetPage&lt;Store&gt; findByZipCodeFacetOnProducts(
   facetQuery.setPageRequest(<span class="keyword">new</span> PageRequest(<span class="integer">0</span>, <span class="integer">20</span>));
   facetQuery.addFilterQuery(filterQuery);
   <span class="keyword">return</span> solrTemplate.queryForFacetPage(facetQuery, Store.class);
+}</code></pre></div></div></section><section id="_grouping"><h2>Grouping</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
+<span class="directive">public</span> GroupPage&lt;Store&gt; groupByZipCode(<span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; products) {
+  <span class="directive">final</span> <span class="predefined-type">Field</span> zipCodeField = <span class="keyword">new</span> SimpleField(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>);
+  <span class="directive">final</span> <span class="predefined-type">Query</span> query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>)
+            .contains(products));
+  <span class="directive">final</span> SimpleQuery groupQuery =
+             <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>));
+  <span class="directive">final</span> GroupOptions groupOptions = <span class="keyword">new</span> GroupOptions()
+      .addGroupByField(zipCodeField)
+      .addGroupByQuery(query);
+   groupQuery.setGroupOptions(groupOptions);
+   <span class="keyword">return</span> solrTemplate.queryForGroupPage(groupQuery, Store.class)
 }</code></pre></div></div></section></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script type="text/javascript">// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner

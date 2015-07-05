@@ -87,3 +87,24 @@ public FacetPage<Store> findFacetOnNameSolrTemplate(
   return solrTemplate.queryForFacetPage(facetQuery, Store.class);
 }
 ----
+
+=== Grouping
+[source, language="java"]
+----
+@Override
+public GroupPage<Store> groupByZipCode(final List<String> products) {
+  final Field zipCodeField = new SimpleField("zipCode");
+  final Query query = new SimpleQuery(new Criteria("products")
+            .contains(products));
+  final SimpleQuery groupQuery =
+             new SimpleQuery(new SimpleStringCriteria("*:*"));
+  final GroupOptions groupOptions = new GroupOptions()
+      .addGroupByField(zipCodeField)
+      .addGroupByQuery(query);
+   groupQuery.setGroupOptions(groupOptions);
+   return solrTemplate.queryForGroupPage(groupQuery, Store.class)
+}
+----
+
+
+
