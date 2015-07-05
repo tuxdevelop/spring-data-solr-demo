@@ -106,5 +106,22 @@ public GroupPage<Store> groupByZipCode(final List<String> products) {
 }
 ----
 
+=== More Operations
+
+* Field Stats
+* Pivot Faceting
+* Terms
+* Time allowed for a search
+* Boost document Score
+
+=== More Operations
+
+* Select Request Handler
+* Using Join
+* Highlighting
+* Using Functions
+* Realtime Get
+
+
 
 

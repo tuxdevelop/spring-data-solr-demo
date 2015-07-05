@@ -28,3 +28,5 @@ Marcel Becker <marcel.becker@1und1.de>
 include::spring-data.adoc[]
 
 include::spring-data-solr-content.adoc[]
+
+include::spring-data-rest.adoc[]
