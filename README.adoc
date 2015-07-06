@@ -1,5 +1,27 @@
 = Spring Data Solr Demo
 
-This demo projects covers the basic functionality of the Spring Data Solr project
+This demo projects covers the basic functionality of the Spring Data Solr project.
+
+== Modules
+
+The demo project includes different technologies build on top of Spring-Data-Solr. Earch module includes integration
+tests to understand the implementation.
+
+=== Common
+
+The common module contains the basic components for the demo project.
+
+* Embedded Solr Server
+* Solr Repository
+* Solr Template Usage
+
+=== Data-Rest
+
+The data-rest module contains a sample Spring-Boot application, which combines Spring-Data-Solr and Spring-Data-Rest.
+
+=== Jaxrs
+
+The jaxrs module contains a Spring-Boot application with a several service layer. The service layer expose a JaxRS 2
+interface. The service uses Jersey as implementation.
 
 
