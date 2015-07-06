@@ -58,14 +58,14 @@ public Collection<Store> FindStoreByNameFilterQuery(final String name){
 }
 ----
 
-=== Facetting
+=== Faceting
 
-=== Facetting
+=== Faceting
 
 * Find stores by product, using Filter and "facet" by name
 * Find stores by zipCode and "facet" by products
 
-=== Facetting
+=== Faceting
 
 [source, language="java"]
 ----
@@ -84,7 +84,7 @@ FacetPage<Store> findByZipCodeFacetOnProducts(
     final Pageable page);
 ----
 
-=== Facetting
+=== Faceting
 
 [source, language="java"]
 ----
