@@ -30,3 +30,10 @@ include::spring-data.adoc[]
 include::spring-data-solr-content.adoc[]
 
 include::spring-data-rest.adoc[]
+
+
+== Questions ?
+
+== Resources
+
+* http://tuxdevelop.github.io/presentations.html

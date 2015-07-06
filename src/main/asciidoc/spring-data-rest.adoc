@@ -1,5 +1,10 @@
 == Spring Data Rest
 
+=== Spring Data Rest
+
+* Expose CRUD Operations of managed Entities
+* Expose Finder Methods of Repositories
+
 === Live Demo
 
 * Starbucks Demo

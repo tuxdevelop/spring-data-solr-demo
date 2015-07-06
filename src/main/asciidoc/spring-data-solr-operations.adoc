@@ -2,6 +2,12 @@
 
 === Partial Updates
 
+=== Partial Updates
+
+* Update the products of an existing Store
+
+=== Partial Updates
+
 [source, language="java"]
 ----
 @Autowired
@@ -17,6 +23,10 @@ public void updateProducts(String id, Collection<String> products) {
 ----
 
 === Filter Query
+
+=== Filter Query
+
+* Find Stores by Name, using Filter Query
 
 === Filter Query
 
@@ -49,6 +59,11 @@ public Collection<Store> FindStoreByNameFilterQuery(final String name){
 ----
 
 === Facetting
+
+=== Facetting
+
+* Find stores by product, using Filter and "facet" by name
+* Find stores by zipCode and "facet" by products
 
 === Facetting
 
@@ -87,6 +102,12 @@ public FacetPage<Store> findFacetOnNameSolrTemplate(
   return solrTemplate.queryForFacetPage(facetQuery, Store.class);
 }
 ----
+
+=== Grouping
+
+=== Grouping
+
+* Find Stores by products and group by zipCode
 
 === Grouping
 [source, language="java"]
