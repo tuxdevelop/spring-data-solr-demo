@@ -13,7 +13,7 @@ Marcel Becker <marcel.becker@1und1.de>
 == About me
 
 * Software Developer
-** 1&1 Internet AG
+** 1&1 Internet SE
 * github
 ** tuxdevelop.github.io
 * Mail

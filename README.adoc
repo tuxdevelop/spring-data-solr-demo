@@ -1,6 +1,9 @@
 = Spring Data Solr Demo
 
 This demo projects covers the basic functionality of the Spring Data Solr project.
+The slides of the demo presentation are located at
+
+http://htmlpreview.github.io/?https://github.com/tuxdevelop/spring-data-solr-demo/blob/master/src/main/asciidoc/spring-data-solr.html[Slides]
 
 == Modules
 
