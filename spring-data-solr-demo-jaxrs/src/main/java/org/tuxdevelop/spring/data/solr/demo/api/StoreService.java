@@ -18,6 +18,11 @@ public interface StoreService {
     @Consumes("application/json")
     Store add(final Store store);
 
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    Store get(@PathParam("id") String id);
+
     @DELETE
     @Path("/{id}")
     void delete(@PathParam("id") final String id);

@@ -27,6 +27,11 @@ public class StoreServiceBean implements StoreService {
     }
 
     @Override
+    public Store get(final String id){
+        return storeRepository.findOne(id);
+    }
+
+    @Override
     public void delete(final String id) {
         storeRepository.delete(id);
     }

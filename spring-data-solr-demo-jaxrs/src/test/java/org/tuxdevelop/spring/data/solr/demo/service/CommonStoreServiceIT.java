@@ -34,7 +34,40 @@ public abstract class CommonStoreServiceIT {
         store.setZipCode("12345");
         final Store addedStore = storeService.add(store);
         assertThat(addedStore).isNotNull();
+        final Store gotStore = storeService.get(addedStore.getId());
+        assertThat(gotStore).isNotNull();
+        assertThat(gotStore.getProducts()).contains("Tux");
+        System.err.println(gotStore);
         storeService.delete(addedStore.getId());
+    }
+
+    @Test
+    public void getIT() {
+        final String id = "1";
+        final Store store = storeService.get(id);
+        assertThat(store).isNotNull();
+        System.err.println(store);
+    }
+
+    @Test
+    public void deleteIT() {
+        final Collection<String> products = new LinkedList<>();
+        products.add("Tux");
+        final Collection<String> services = new LinkedList<>();
+        services.add("Live Hacking");
+        final Store store = new Store();
+        store.setStreet("Test Street");
+        store.setCity("Test City");
+        store.setLocation(new Point(40D, 40D));
+        store.setName("TestStarbucksStore");
+        store.setProducts(products);
+        store.setServices(services);
+        store.setZipCode("12345");
+        final Store addedStore = storeService.add(store);
+        assertThat(addedStore).isNotNull();
+        storeService.delete(addedStore.getId());
+        final Store gotStore = storeService.get(addedStore.getId());
+        assertThat(gotStore).isNull();
     }
 
     @Test
