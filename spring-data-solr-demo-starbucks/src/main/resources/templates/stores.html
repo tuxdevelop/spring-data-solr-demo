@@ -18,71 +18,82 @@
 <body>
 <div th:include="fragments/header :: header"></div>
 <div class="viewport">
-    <form id="searchProducts" th:action="@{stores}" th:object="${selectedProducts}" action="#" method="post">
+    <form id="searchProducts" th:action="@{stores}" th:object="${products}" action="#" method="post">
         <div class="container">
             <div class="hero-unit">
-                <div th:each="product : ${products}">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-      <span class="input-group-addon">
-        <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product.product}"
-               th:field="${selectedProducts}" th:value="${product.product}"/>
-      </span>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Select Products</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div th:each="product : ${products.products}">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product}"
+                                               th:field="*{selected}" th:value="${product}"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-xs-10">
+                            <button type="submit" class="btn btn-default btn-xs">Search
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-10">
-                    <button type="submit" class="btn btn-default btn-xs">Search
-                    </button>
                 </div>
             </div>
         </div>
     </form>
     <div class="container" th:if="${searchResult.size()} > 0">
         <div class="hero-unit">
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <td>id</td>
-                    <td>name</td>
-                    <td>zip code</td>
-                    <td>city</td>
-                    <td>products</td>
-                    <td>services</td>
-                    <td>location</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="store : ${searchResult}">
-                    <td th:text="${store.}"/>
-                    <td th:text="${store.id}"/>
-                    <td th:text="${store.name}"/>
-                    <td th:text="${store.zipCode}"/>
-                    <td th:text="${store.city}"/>
-                    <td>
-                        <table class="table table-bordered table-striped">
-                            <tbody>
-                            <tr th:each="productValue : ${store.produtcs}">
-                                <label th:text="${productValue}"/>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="table table-bordered table-striped">
-                            <tbody>
-                            <tr th:each="serviceValue : ${store.services}">
-                                <label th:text="${serviceValue}"/>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td th:text="${store.location}"/>
-                </tr>
-                </tbody>
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td>id</td>
+                            <td>name</td>
+                            <td>zip code</td>
+                            <td>city</td>
+                            <td>products</td>
+                            <td>services</td>
+                            <td>location</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="store : ${searchResult}">
+                            <td th:text="${store.id}"/>
+                            <td th:text="${store.name}"/>
+                            <td th:text="${store.zipCode}"/>
+                            <td th:text="${store.city}"/>
+                            <td>
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                    <tr th:each="productValue : ${store.products}">
+                                        <label th:text="${productValue}"/>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                    <tr th:each="serviceValue : ${store.services}">
+                                        <label th:text="${serviceValue}"/>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td th:text="${store.location}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

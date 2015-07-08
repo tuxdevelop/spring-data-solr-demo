@@ -31,31 +31,30 @@ public class StoreController {
     @RequestMapping(method = RequestMethod.GET)
     public void init(final Model model) {
         model.addAttribute("products", getProducts());
-        model.addAttribute("selectedProducts", new LinkedList<String>());
         model.addAttribute("searchResult", new LinkedList<Store>());
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void searchByProducts(@ModelAttribute("selectedProducts") final LinkedList<String> selectedProducts,
+    public void searchByProducts(@ModelAttribute("products") final ProductsViewModel selectedProducts,
                                  final Model model) {
-        final Collection<Store> stores = storeRepository.findByProductsIn(selectedProducts);
+        final Collection<Store> stores = storeRepository.findByProductsIn(selectedProducts.getSelected());
         model.addAttribute("searchResult", stores);
+        model.addAttribute("products", getProducts());
     }
 
 
-    private List<ProductsViewModel> getProducts() {
+    private ProductsViewModel getProducts() {
         final FacetPage<Store> response = storeRepository.findByFacetOnProducts(new
                 PageRequest(0, 100));
         final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("products");
         final List<FacetFieldEntry> content = facetResultPage.getContent();
-        final List<ProductsViewModel> products = new LinkedList<>();
+        final ProductsViewModel model = new ProductsViewModel();
+        model.setProducts(new LinkedList<>());
+        model.setSelected(new LinkedList<>());
         for (final FacetFieldEntry facetFieldEntry : content) {
-            final ProductsViewModel model = new ProductsViewModel();
-            model.setProduct(facetFieldEntry.getValue());
-            model.setChecked(Boolean.FALSE);
-            products.add(model);
+            model.getProducts().add(facetFieldEntry.getValue());
         }
-        return products;
+        return model;
     }
 
 }
