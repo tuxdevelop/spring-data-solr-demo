@@ -74,7 +74,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * find all stores of a give zip code
      *
      * @param zipCode query parameter
-     * @param page input page
+     * @param page    input page
      * @return a facet of the products of stores, where the input matches
      */
     @Query(value = "zipCode:?0")
@@ -82,10 +82,20 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
     FacetPage<Store> findByZipCodeFacetOnProducts(@Param("zipCode") final String zipCode, final Pageable page);
 
     /**
+     * find all stores
+     *
+     * @param page input page
+     * @return a facet of the products of stores, where the input matches
+     */
+    @Query(value = "*:*")
+    @Facet(fields = {"products"})
+    FacetPage<Store> findByFacetOnProducts(final Pageable page);
+
+    /**
      * find all stores which provides the given products
      *
      * @param products query param
-     * @param page input page
+     * @param page     input page
      * @return a facet of the names of stores, where the input matches
      */
     @Query(value = "*:*", filters = "products:?0")

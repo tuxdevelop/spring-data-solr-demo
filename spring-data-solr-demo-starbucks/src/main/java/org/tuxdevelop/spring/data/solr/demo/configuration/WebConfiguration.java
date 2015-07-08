@@ -15,6 +15,7 @@ public class WebConfiguration {
             public void addViewControllers(final ViewControllerRegistry viewControllerRegistry) {
                 viewControllerRegistry.addViewController("/").setViewName("index");
                 viewControllerRegistry.addViewController("/index").setViewName("index");
+                viewControllerRegistry.addRedirectViewController("/stores","stores");
             }
         };
     }

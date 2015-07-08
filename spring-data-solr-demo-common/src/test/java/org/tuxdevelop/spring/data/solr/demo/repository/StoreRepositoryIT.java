@@ -161,7 +161,7 @@ public class StoreRepositoryIT {
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         response.getContent().forEach(System.err::println);
-        Page<FacetFieldEntry> page = response.getFacetResultPage("name");
+        final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
         System.err.println("size:" + size);
         final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("name");
@@ -180,10 +180,29 @@ public class StoreRepositoryIT {
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         response.getContent().forEach(System.err::println);
-        Page<FacetFieldEntry> page = response.getFacetResultPage("name");
+        final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
         System.err.println("size:" + size);
         final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("name");
+        List<FacetFieldEntry> content = facetResultPage.getContent();
+        System.err.println("content.size:" + content.size());
+        for (final FacetFieldEntry facetFieldEntry : content) {
+            System.err.println("Found: " + facetFieldEntry.getValue());
+        }
+    }
+
+    @Test
+    public void findByFacetOnProductsIT() {
+        final FacetPage<Store> response = storeRepository.findByFacetOnProducts(new
+                PageRequest(0, 100));
+        assertThat(response).isNotNull();
+        assertThat(response.getContent()).isNotEmpty();
+        assertThat(response.getContent()).hasSize(100);
+        response.getContent().forEach(System.err::println);
+        final Page<FacetFieldEntry> page = response.getFacetResultPage("products");
+        final int size = page.getSize();
+        System.err.println("size:" + size);
+        final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("products");
         List<FacetFieldEntry> content = facetResultPage.getContent();
         System.err.println("content.size:" + content.size());
         for (final FacetFieldEntry facetFieldEntry : content) {
@@ -203,7 +222,7 @@ public class StoreRepositoryIT {
         final GroupPage<Store> response = storeRepository.groupByZipCode(products);
         System.err.println("-----------------------");
         GroupResult<Store> groupResult = response.getGroupResult("zipCode");
-        Page<GroupEntry<Store>> groupEntries = groupResult.getGroupEntries();
+        final Page<GroupEntry<Store>> groupEntries = groupResult.getGroupEntries();
         for (final GroupEntry<Store> groupEntry : groupEntries) {
             final String groupValue = groupEntry.getGroupValue();
             System.err.println("groupValue: " + groupValue);
