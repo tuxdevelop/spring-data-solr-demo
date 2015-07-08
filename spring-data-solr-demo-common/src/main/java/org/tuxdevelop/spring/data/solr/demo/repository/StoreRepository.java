@@ -24,6 +24,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      */
     Collection<Store> findByName(@Param("name") final String name);
 
+
     /**
      * find all stores whoch provides the given products
      *

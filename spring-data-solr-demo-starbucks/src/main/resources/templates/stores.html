@@ -20,81 +20,73 @@
 <div class="viewport">
     <form id="searchProducts" th:action="@{stores}" th:object="${products}" action="#" method="post">
         <div class="container">
-            <div class="hero-unit">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>Select Products</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div th:each="product : ${products.products}">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product}"
-                                               th:field="*{selected}" th:value="${product}"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-10">
-                            <button type="submit" class="btn btn-default btn-xs">Search
-                            </button>
+
+            <div class="page-header">
+                <h3>Select Products</h3>
+            </div>
+            <div th:each="product : ${products.products}">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product}"
+                                   th:field="*{selected}" th:value="${product}"/>
                         </div>
                     </div>
                 </div>
             </div>
+            <p>
+
+            <div class="col-xs-10">
+                <button type="submit" class="btn btn-inverse btn-xs">Search
+                </button>
+            </div>
+            </p>
         </div>
     </form>
     <div class="container" th:if="${searchResult.size()} > 0">
-        <div class="hero-unit">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <td>id</td>
-                            <td>name</td>
-                            <td>zip code</td>
-                            <td>city</td>
-                            <td>products</td>
-                            <td>services</td>
-                            <td>location</td>
-                        </tr>
-                        </thead>
+        <div class="page-header">
+            <h3 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h3>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>zip code</th>
+                <th>city</th>
+                <th>products</th>
+                <th>services</th>
+                <th>location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store : ${searchResult}">
+                <td th:text="${store.id}"/>
+                <td th:text="${store.name}"/>
+                <td th:text="${store.zipCode}"/>
+                <td th:text="${store.city}"/>
+                <td>
+                    <table class="table">
                         <tbody>
-                        <tr th:each="store : ${searchResult}">
-                            <td th:text="${store.id}"/>
-                            <td th:text="${store.name}"/>
-                            <td th:text="${store.zipCode}"/>
-                            <td th:text="${store.city}"/>
-                            <td>
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                    <tr th:each="productValue : ${store.products}">
-                                        <label th:text="${productValue}"/>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td>
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                    <tr th:each="serviceValue : ${store.services}">
-                                        <label th:text="${serviceValue}"/>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td th:text="${store.location}"/>
+                        <tr th:each="productValue : ${store.products}">
+                            <label th:text="${productValue}"/>
                         </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
+                </td>
+                <td>
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="serviceValue : ${store.services}">
+                            <label th:text="${serviceValue}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td th:text="${store.location}"/>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
