@@ -18,12 +18,10 @@
 <body>
 <div th:include="fragments/header :: header"></div>
 <div class="viewport">
-    <form id="searchProducts" th:action="@{stores}" th:object="${products}" action="#" method="post">
-        <div class="container">
+    <div class="container">
+        <form id="searchProducts" th:action="@{stores}" th:object="${products}" action="#" method="post">
+            <h4>Seach By Products</h4>
 
-            <div class="page-header">
-                <h3>Select Products</h3>
-            </div>
             <div th:each="product : ${products.products}">
                 <div class="row">
                     <div class="col-lg-6">
@@ -41,8 +39,8 @@
                 </button>
             </div>
             </p>
-        </div>
-    </form>
+        </form>
+    </div>
     <div class="container" th:if="${searchResult.size()} > 0">
         <div class="page-header">
             <h3 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h3>
