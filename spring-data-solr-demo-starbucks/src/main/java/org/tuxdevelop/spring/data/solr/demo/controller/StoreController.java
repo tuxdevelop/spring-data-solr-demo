@@ -46,7 +46,13 @@ public class StoreController {
     @RequestMapping(value = "/products", method = RequestMethod.POST)
     public void searchByProducts(@ModelAttribute("products") final ProductsViewModel selectedProducts,
                                  final Model model) {
-        final Collection<Store> stores = storeRepository.findByProductsIn(selectedProducts.getSelected());
+        final Collection<String> selectedProductsRequest;
+        if (selectedProducts.getSelected() != null) {
+            selectedProductsRequest = selectedProducts.getSelected();
+        } else {
+            selectedProductsRequest = getProducts().getProducts();
+        }
+        final Collection<Store> stores = storeRepository.findByProductsIn(selectedProductsRequest);
         model.addAttribute("searchResult", stores);
         model.addAttribute("products", getProducts());
     }
@@ -56,8 +62,13 @@ public class StoreController {
                                  final Model model) {
         final Point point = new Point(locationViewModel.getLatitude(), locationViewModel.getLongtitude());
         final Distance distance = new Distance(locationViewModel.getDistance());
-        final Collection<Store> stores = storeRepository.findByProductsInAndLocationNear(locationViewModel
-                .getProductsViewModel().getSelected(), point, distance);
+        final Collection<String> selectedProducts;
+        if (locationViewModel.getProductsViewModel().getSelected() != null) {
+            selectedProducts = locationViewModel.getProductsViewModel().getSelected();
+        } else {
+            selectedProducts = getProducts().getProducts();
+        }
+        final Collection<Store> stores = storeRepository.findByProductsInAndLocationNear(selectedProducts, point, distance);
         model.addAttribute("location", locationViewModel);
         model.addAttribute("searchResult", stores);
         model.addAttribute("products", getProducts());
