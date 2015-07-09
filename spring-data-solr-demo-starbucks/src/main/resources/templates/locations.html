@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Starbucks App</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/main.css"
+          th:href="@{css/main.css}"/>
+</head>
+<body>
+<div th:include="fragments/header :: header"></div>
+<div class="viewport">
+    <div class="container">
+        <form id="searchProducts" th:action="@{locations}" th:object="${location}" action="#" method="post">
+            <h4>Seach By Location And Products</h4>
+
+            <div th:each="product : ${products.products}">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product}"
+                                   th:field="*{productsViewModel.selected}" th:value="${product}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>
+
+            <div class="col-xs-10">
+                <input class="form-control" id="latitude" type="text" th:value="*{latitude}"
+                       th:field="*{latitude}"/>
+            </div>
+            <label for="latitude" class="control-label col-xs-2">Latitude</label>
+
+            <div class="col-xs-10">
+                <input class="form-control" id="longtitude" type="text" th:value="*{longtitude}"
+                       th:field="*{longtitude}"/>
+            </div>
+            <label for="longtitude" class="control-label col-xs-2">longtitude</label>
+
+            <div class="col-xs-10">
+                <input class="form-control" id="distance" type="text" th:value="*{distance}"
+                       th:field="*{distance}"/>
+            </div>
+            <label for="distance" class="control-label col-xs-2">Distance</label>
+
+            <div class="col-xs-10">
+                <button type="submit" class="btn btn-inverse btn-xs">Search
+                </button>
+            </div>
+            </p>
+        </form>
+    </div>
+    <div class="container" th:if="${searchResult.size()} > 0">
+        <div class="page-header">
+            <h3 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h3>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>zip code</th>
+                <th>city</th>
+                <th>products</th>
+                <th>services</th>
+                <th>location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store : ${searchResult}">
+                <td th:text="${store.id}"/>
+                <td th:text="${store.name}"/>
+                <td th:text="${store.zipCode}"/>
+                <td th:text="${store.city}"/>
+                <td>
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="productValue : ${store.products}">
+                            <label th:text="${productValue}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="serviceValue : ${store.services}">
+                            <label th:text="${serviceValue}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td th:text="${store.location}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

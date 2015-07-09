@@ -19,7 +19,7 @@
 <div th:include="fragments/header :: header"></div>
 <div class="viewport">
     <div class="container">
-        <form id="searchProducts" th:action="@{stores}" th:object="${products}" action="#" method="post">
+        <form id="searchProducts" th:action="@{products}" th:object="${products}" action="#" method="post">
             <h4>Seach By Products</h4>
 
             <div th:each="product : ${products.products}">
