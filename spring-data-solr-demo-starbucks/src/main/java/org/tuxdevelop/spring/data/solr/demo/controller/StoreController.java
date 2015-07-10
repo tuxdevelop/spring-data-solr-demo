@@ -60,8 +60,11 @@ public class StoreController {
     @RequestMapping(value = "/locations", method = RequestMethod.POST)
     public void searchByLocation(@ModelAttribute("products") final LocationViewModel locationViewModel,
                                  final Model model) {
-        final Point point = new Point(locationViewModel.getLatitude(), locationViewModel.getLongtitude());
-        final Distance distance = new Distance(locationViewModel.getDistance());
+        final Double longtitude = locationViewModel.getLongtitude() != null ? locationViewModel.getLongtitude() : -90;
+        final Double latitude = locationViewModel.getLatitude() != null ? locationViewModel.getLatitude() : -90;
+        final Double distanceValue = locationViewModel.getDistance() != null ? locationViewModel.getDistance() : 0D;
+        final Point point = new Point(latitude, longtitude);
+        final Distance distance = new Distance(distanceValue);
         final Collection<String> selectedProducts;
         if (locationViewModel.getProductsViewModel().getSelected() != null) {
             selectedProducts = locationViewModel.getProductsViewModel().getSelected();
@@ -79,8 +82,8 @@ public class StoreController {
         final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("products");
         final List<FacetFieldEntry> content = facetResultPage.getContent();
         final ProductsViewModel model = new ProductsViewModel();
-        model.setProducts(new LinkedList<>());
-        model.setSelected(new LinkedList<>());
+        model.setProducts(new LinkedList<String>());
+        model.setSelected(new LinkedList<String>());
         for (final FacetFieldEntry facetFieldEntry : content) {
             model.getProducts().add(facetFieldEntry.getValue());
         }

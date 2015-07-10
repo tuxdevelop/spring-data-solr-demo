@@ -141,7 +141,9 @@ public class StoreRepositoryIT {
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         assertThat(response.getContent()).hasSize(3);
-        response.getContent().forEach(System.err::println);
+        for (final Store store : response.getContent()) {
+            System.err.println(store);
+        }
         Page<FacetFieldEntry> page = response.getFacetResultPage("products");
         final int size = page.getSize();
         System.err.println("size:" + size);
@@ -160,7 +162,9 @@ public class StoreRepositoryIT {
         final FacetPage<Store> response = storeRepository.findFacetOnName(products, new PageRequest(0, 20));
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
-        response.getContent().forEach(System.err::println);
+        for (final Store store : response.getContent()) {
+            System.err.println(store);
+        }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
         System.err.println("size:" + size);
@@ -179,7 +183,9 @@ public class StoreRepositoryIT {
         final FacetPage<Store> response = storeRepository.findFacetOnNameSolrTemplate(products);
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
-        response.getContent().forEach(System.err::println);
+        for (final Store store : response.getContent()) {
+            System.err.println(store);
+        }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
         System.err.println("size:" + size);
@@ -198,7 +204,9 @@ public class StoreRepositoryIT {
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         assertThat(response.getContent()).hasSize(100);
-        response.getContent().forEach(System.err::println);
+        for (final Store store : response.getContent()) {
+            System.err.println(store);
+        }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("products");
         final int size = page.getSize();
         System.err.println("size:" + size);
@@ -228,7 +236,9 @@ public class StoreRepositoryIT {
             System.err.println("groupValue: " + groupValue);
             final List<Store> groupContet = groupEntry.getResult().getContent();
             System.err.println("Members of the group: ");
-            groupContet.forEach(System.err::println);
+            for (final Store store : groupContet) {
+                System.err.println(store);
+            }
         }
     }
 }
