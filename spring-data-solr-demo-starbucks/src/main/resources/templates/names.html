@@ -19,18 +19,13 @@
 <div th:include="fragments/header :: header"></div>
 <div class="viewport">
     <div class="container">
-        <form id="searchProducts" th:action="@{products}" th:object="${products}" action="#" method="post">
-            <h4>Seach By Products</h4>
+        <form id="searchProducts" th:action="@{names}" th:object="${name}" action="#" method="post">
+            <h4>Seach By Name</h4>
 
-            <div th:each="product : ${products.products}">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="checkbox" aria-label="product" th:text="'&nbsp;'+ ${product}"
-                                   th:field="*{selected}" th:value="${product}"/>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xs-10">
+                <label for="name" class="control-label col-xs-2">Name</label>
+                <input class="form-control" id="name" type="text" th:value="*{name}"
+                       th:field="*{name}"/>
             </div>
             <p>
 

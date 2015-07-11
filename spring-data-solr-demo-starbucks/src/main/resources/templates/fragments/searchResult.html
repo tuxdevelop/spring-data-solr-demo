@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div th:fragment="searchResult">
+    <div class="container" th:if="${searchResult.size()} > 0">
+        <div class="page-header">
+            <h4 th:text="'Search Result - Count('+ ${searchResult.size()} +')'">Search Result</h4>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>zip code</th>
+                <th>city</th>
+                <th>products</th>
+                <th>services</th>
+                <th>location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store : ${searchResult}">
+                <td th:text="${store.id}"/>
+                <td th:text="${store.name}"/>
+                <td th:text="${store.zipCode}"/>
+                <td th:text="${store.city}"/>
+                <td>
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="productValue : ${store.products}">
+                            <label th:text="${productValue}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table class="table">
+                        <tbody>
+                        <tr th:each="serviceValue : ${store.services}">
+                            <label th:text="${serviceValue}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td th:text="${store.location}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.tuxdevelop.spring.data.solr.demo.domain.Store;
 import org.tuxdevelop.spring.data.solr.demo.model.LocationViewModel;
+import org.tuxdevelop.spring.data.solr.demo.model.NameViewModel;
 import org.tuxdevelop.spring.data.solr.demo.model.ProductsViewModel;
 import org.tuxdevelop.spring.data.solr.demo.repository.StoreRepository;
 
@@ -40,6 +41,12 @@ public class StoreController {
         locationViewModel.setProductsViewModel(productsViewModel);
         model.addAttribute("products", getProducts());
         model.addAttribute("location", locationViewModel);
+        model.addAttribute("searchResult", new LinkedList<Store>());
+    }
+
+    @RequestMapping(value = "/names", method = RequestMethod.GET)
+    public void initNameSearch(final Model model) {
+        model.addAttribute("name", new NameViewModel());
         model.addAttribute("searchResult", new LinkedList<Store>());
     }
 
@@ -75,6 +82,15 @@ public class StoreController {
         model.addAttribute("location", locationViewModel);
         model.addAttribute("searchResult", stores);
         model.addAttribute("products", getProducts());
+    }
+
+    @RequestMapping(value = "/names", method = RequestMethod.POST)
+    public void searchByName(@ModelAttribute("name") final NameViewModel nameViewModel, final Model model) {
+        final String name = nameViewModel.getName();
+        final String nameToFind = name != null ? name : "";
+        final Collection<Store> stores = storeRepository.findByName(nameToFind);
+        model.addAttribute("name", nameViewModel);
+        model.addAttribute("searchResult", stores);
     }
 
     private ProductsViewModel getProducts() {

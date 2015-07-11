@@ -17,6 +17,7 @@ public class WebConfiguration {
                 viewControllerRegistry.addViewController("/index").setViewName("index");
                 viewControllerRegistry.addRedirectViewController("/products", "products");
                 viewControllerRegistry.addRedirectViewController("/locations", "locations");
+                viewControllerRegistry.addRedirectViewController("/names", "names");
             }
         };
     }
