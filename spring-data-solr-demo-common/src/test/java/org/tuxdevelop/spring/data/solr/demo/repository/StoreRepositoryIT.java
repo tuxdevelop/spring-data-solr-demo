@@ -31,6 +31,16 @@ public class StoreRepositoryIT {
     @Autowired
     private SolrInitializer solrInitializer;
 
+
+    /*
+     * init solr
+     */
+
+    @Before
+    public void init() throws Exception {
+        solrInitializer.importStarbucks();
+    }
+
     /*
      * Search IT
      */
@@ -122,11 +132,6 @@ public class StoreRepositoryIT {
         final Collection<String> updatedProducts = updatedStore.getProducts();
         assertThat(products).isNotEqualTo(updatedProducts);
         assertThat(updatedProducts).contains(newProduct);
-    }
-
-    @Before
-    public void init() throws Exception {
-        solrInitializer.importStarbucks();
     }
 
     /*
