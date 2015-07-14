@@ -126,12 +126,8 @@ public class StoreController {
         model.addAttribute("cityGroup", cityGroupModel);
     }
 
-    @RequestMapping(value = "/citiesNext", method = RequestMethod.POST)
-    public String getCitiesNext(@ModelAttribute("location") final LocationViewModel locationViewModel, @RequestParam
-            (value = "page") final Integer currentPage, final Model model) {
-        final Double longtitude = locationViewModel.getLongtitude() != null ? locationViewModel.getLongtitude() : -90;
-        final Double latitude = locationViewModel.getLatitude() != null ? locationViewModel.getLatitude() : -90;
-        final Double distanceValue = locationViewModel.getDistance() != null ? locationViewModel.getDistance() : 0D;
+    @RequestMapping(value = "/citiesNext", method = RequestMethod.GET)
+    public String getCitiesNext(@RequestParam(value = "latitude", defaultValue = "-90") final Double latitude, @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude, @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue, @RequestParam(value = "page") final Integer currentPage, final Model model) {
         final Point point = new Point(latitude, longtitude);
         final Distance distance = new Distance(distanceValue);
         final CityGroupModel cityGroupModel = new CityGroupModel();
@@ -139,17 +135,18 @@ public class StoreController {
         Page<GroupEntry<StarbucksStore>> groupPage = response.getGroupResult("city").getGroupEntries();
         cityGroupModel.setGroupEntries(groupPage);
         cityGroupModel.setCurrentPage(currentPage);
+        final LocationViewModel locationViewModel = new LocationViewModel();
+        locationViewModel.setDistance(distanceValue);
+        locationViewModel.setLatitude(latitude);
+        locationViewModel.setLongtitude(longtitude);
         model.addAttribute("location", locationViewModel);
         model.addAttribute("cityGroup", cityGroupModel);
         return "cities";
     }
 
-    @RequestMapping(value = "/citiesPrev", method = RequestMethod.POST)
-    public String getCitiesPrev(@ModelAttribute("location") final LocationViewModel locationViewModel, @RequestParam
-            (value = "page") final Integer currentPage, final Model model) {
-        final Double longtitude = locationViewModel.getLongtitude() != null ? locationViewModel.getLongtitude() : -90;
-        final Double latitude = locationViewModel.getLatitude() != null ? locationViewModel.getLatitude() : -90;
-        final Double distanceValue = locationViewModel.getDistance() != null ? locationViewModel.getDistance() : 0D;
+    @RequestMapping(value = "/citiesPrev", method = RequestMethod.GET)
+    public String getCitiesPrev(@RequestParam(value = "latitude", defaultValue = "-90") final Double latitude,
+                                @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude, @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue, @RequestParam(value = "page") final Integer currentPage, final Model model) {
         final Point point = new Point(latitude, longtitude);
         final Distance distance = new Distance(distanceValue);
         final CityGroupModel cityGroupModel = new CityGroupModel();
@@ -157,6 +154,10 @@ public class StoreController {
         Page<GroupEntry<StarbucksStore>> groupPage = response.getGroupResult("city").getGroupEntries();
         cityGroupModel.setGroupEntries(groupPage);
         cityGroupModel.setCurrentPage(currentPage);
+        final LocationViewModel locationViewModel = new LocationViewModel();
+        locationViewModel.setDistance(distanceValue);
+        locationViewModel.setLatitude(latitude);
+        locationViewModel.setLongtitude(longtitude);
         model.addAttribute("location", locationViewModel);
         model.addAttribute("cityGroup", cityGroupModel);
         return "cities";

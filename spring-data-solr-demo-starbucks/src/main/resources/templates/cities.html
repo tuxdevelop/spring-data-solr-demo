@@ -99,22 +99,19 @@
     </div>
 
     <div class="container">
-        <div th:if="${cityGroup.hasPrev()}">
-            <form th:object="${location}" th:action="@{citiesPrev (page=${cityGroup.currentPage}-1)}" action="#"
-                  method="post">
-                <button type="submit"
-                        class="btn btn-inverse btn-xs">prev
-                </button>
-            </form>
-        </div>
-        <div th:if="${cityGroup.hasNext()}">
-            <form th:object="${location}" th:action="@{citiesNext (page=${cityGroup.currentPage}+1)}" action="#"
-                  method="post">
-                <button type="submit"
-                        class="btn btn-inverse btn-xs">next
-                </button>
-            </form>
-        </div>
+        <a href="#"
+           th:href="@{citiesPrev (page=${cityGroup.currentPage}-1,longtitude=${location.longtitude},
+              latitude=${location.latitude},distance=${location.distance})}">
+            <button th:if="${cityGroup.hasPrev()}" type="button"
+                    class="btn btn-inverse btn-xs">prev
+            </button>
+        </a>
+        <a href="#" th:href="@{citiesNext (page=${cityGroup.currentPage}+1,longtitude=${location.longtitude},
+              latitude=${location.latitude},distance=${location.distance})}">
+            <button th:if="${cityGroup.hasNext()}" type="button"
+                    class="btn btn-inverse btn-xs">next
+            </button>
+        </a>
     </div>
 </div>
 </body>
