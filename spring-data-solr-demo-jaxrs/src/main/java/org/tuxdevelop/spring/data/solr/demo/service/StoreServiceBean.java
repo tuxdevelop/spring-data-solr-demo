@@ -6,8 +6,8 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Component;
 import org.tuxdevelop.spring.data.solr.demo.api.StoreService;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
-import org.tuxdevelop.spring.data.solr.demo.repository.StoreRepository;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
+import org.tuxdevelop.spring.data.solr.demo.repository.StarbucksStoreRepository;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,42 +16,42 @@ import java.util.List;
 public class StoreServiceBean implements StoreService {
 
     @Autowired
-    private StoreRepository storeRepository;
+    private StarbucksStoreRepository starbucksStoreRepository;
 
     @Override
-    public Store add(final Store store) {
-        final long count = storeRepository.count();
+    public StarbucksStore add(final StarbucksStore starbucksStore) {
+        final long count = starbucksStoreRepository.count();
         final String id = new String("" + (count + 1));
-        store.setId(id);
-        return storeRepository.save(store);
+        starbucksStore.setId(id);
+        return starbucksStoreRepository.save(starbucksStore);
     }
 
     @Override
-    public Store get(final String id){
-        return storeRepository.findOne(id);
+    public StarbucksStore get(final String id) {
+        return starbucksStoreRepository.findOne(id);
     }
 
     @Override
     public void delete(final String id) {
-        storeRepository.delete(id);
+        starbucksStoreRepository.delete(id);
     }
 
     @Override
-    public Collection<Store> findByName(String name) {
-        return storeRepository.findByName(name);
+    public Collection<StarbucksStore> findByName(String name) {
+        return starbucksStoreRepository.findByName(name);
     }
 
     @Override
-    public Collection<Store> findNear(final Double longtitude, final Double latitude, final Double distance,
+    public Collection<StarbucksStore> findNear(final Double longtitude, final Double latitude, final Double distance,
                                       final List<String> products) {
         final Point point = new Point(latitude, longtitude);
         final Distance dist = new Distance(distance);
-        final Collection<Store> stores;
+        final Collection<StarbucksStore> starbucksStores;
         if (products == null || products.isEmpty()) {
-            stores = storeRepository.findByLocationNear(point, dist);
+            starbucksStores = starbucksStoreRepository.findByLocationNear(point, dist);
         } else {
-            stores = storeRepository.findByProductsInAndLocationNear(products, point, dist);
+            starbucksStores = starbucksStoreRepository.findByProductsInAndLocationNear(products, point, dist);
         }
-        return stores;
+        return starbucksStores;
     }
 }

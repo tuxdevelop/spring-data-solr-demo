@@ -15,9 +15,12 @@ public class WebConfiguration {
             public void addViewControllers(final ViewControllerRegistry viewControllerRegistry) {
                 viewControllerRegistry.addViewController("/").setViewName("index");
                 viewControllerRegistry.addViewController("/index").setViewName("index");
-                viewControllerRegistry.addRedirectViewController("/products", "products");
-                viewControllerRegistry.addRedirectViewController("/locations", "locations");
-                viewControllerRegistry.addRedirectViewController("/names", "names");
+                viewControllerRegistry.addViewController("/products").setViewName("products");
+                viewControllerRegistry.addViewController("/locations").setViewName("locations");
+                viewControllerRegistry.addViewController("/names").setViewName("names");
+                viewControllerRegistry.addViewController("/cities").setViewName("cities");
+                viewControllerRegistry.addViewController("/citiesNext").setViewName("cities");
+                viewControllerRegistry.addViewController("/citiesPrev").setViewName("cities");
             }
         };
     }

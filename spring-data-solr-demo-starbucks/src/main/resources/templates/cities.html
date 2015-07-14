@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Starbucks App</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/bootstrap.css"
+          th:href="@{css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css"
+          href="src/main/resources/static/css/main.css"
+          th:href="@{css/main.css}"/>
+</head>
+<body>
+<div th:include="fragments/header :: header"></div>
+<div class="viewport">
+    <div class="container">
+        <form id="searchProducts" th:action="@{cities}" th:object="${location}" action="#" method="post">
+            <h4>Find By Location and Group By City</h4>
+
+            <div class="col-xs-10">
+                <label for="latitude" class="control-label col-xs-2">Latitude</label>
+                <input class="form-control" id="latitude" type="text" th:value="*{latitude}"
+                       th:field="*{latitude}"/>
+            </div>
+
+            <div class="col-xs-10">
+                <label for="longtitude" class="control-label col-xs-2">Longtitude</label>
+                <input class="form-control" id="longtitude" type="text" th:value="*{longtitude}"
+                       th:field="*{longtitude}"/>
+            </div>
+
+            <div class="col-xs-10">
+                <label for="distance" class="control-label col-xs-2">Distance</label>
+                <input class="form-control" id="distance" type="text" th:value="*{distance}"
+                       th:field="*{distance}"/>
+            </div>
+
+            <div class="col-xs-10">
+                <button type="submit" class="btn btn-inverse btn-xs">Search
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-striped table-hover">
+            <tbody>
+            <tr th:each="groupEntry : ${cityGroup.groupEntries}">
+                <td>
+                    <h4 th:text="'City Group Name' + ${groupEntry.groupValue}"/>
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>zip code</th>
+                            <th>city</th>
+                            <th>products</th>
+                            <th>services</th>
+                            <th>location</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="store : ${groupEntry.result.content}">
+                            <td th:text="${store.id}"/>
+                            <td th:text="${store.name}"/>
+                            <td th:text="${store.zipCode}"/>
+                            <td th:text="${store.city}"/>
+                            <td>
+                                <table class="table">
+                                    <tbody>
+                                    <tr th:each="productValue : ${store.products}">
+                                        <label th:text="${productValue}"/>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="table">
+                                    <tbody>
+                                    <tr th:each="serviceValue : ${store.services}">
+                                        <label th:text="${serviceValue}"/>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td th:text="${store.location}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <div th:if="${cityGroup.hasPrev()}">
+            <form th:object="${location}" th:action="@{citiesPrev (page=${cityGroup.currentPage}-1)}" action="#"
+                  method="post">
+                <button type="submit"
+                        class="btn btn-inverse btn-xs">prev
+                </button>
+            </form>
+        </div>
+        <div th:if="${cityGroup.hasNext()}">
+            <form th:object="${location}" th:action="@{citiesNext (page=${cityGroup.currentPage}+1)}" action="#"
+                  method="post">
+                <button type="submit"
+                        class="btn btn-inverse btn-xs">next
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

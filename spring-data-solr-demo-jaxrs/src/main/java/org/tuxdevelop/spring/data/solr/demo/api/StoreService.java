@@ -1,7 +1,7 @@
 package org.tuxdevelop.spring.data.solr.demo.api;
 
 
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
 
 import javax.ws.rs.*;
 import java.util.Collection;
@@ -16,12 +16,12 @@ public interface StoreService {
     @Path("/")
     @Produces("application/json")
     @Consumes("application/json")
-    Store add(final Store store);
+    StarbucksStore add(final StarbucksStore starbucksStore);
 
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    Store get(@PathParam("id") String id);
+    StarbucksStore get(@PathParam("id") String id);
 
     @DELETE
     @Path("/{id}")
@@ -30,12 +30,12 @@ public interface StoreService {
     @GET
     @Path(SEARCH + "/byName")
     @Produces("application/json")
-    Collection<Store> findByName(@QueryParam("name") final String name);
+    Collection<StarbucksStore> findByName(@QueryParam("name") final String name);
 
     @GET
     @Path(SEARCH + "/near")
     @Produces("application/json")
-    Collection<Store> findNear(@QueryParam("longtitude") final Double longtitude,
+    Collection<StarbucksStore> findNear(@QueryParam("longtitude") final Double longtitude,
                                @QueryParam("latitude") final Double latitude,
                                @QueryParam("distance") final Double distance,
                                @QueryParam("products") final List<String> products);

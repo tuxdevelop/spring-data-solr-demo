@@ -8,13 +8,13 @@ import org.springframework.data.solr.core.query.result.FacetPage;
 import org.springframework.data.solr.repository.Facet;
 import org.springframework.data.solr.repository.Query;
 import org.springframework.data.solr.repository.SolrCrudRepository;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
 
 import java.util.Collection;
 import java.util.List;
 
 
-public interface StoreRepository extends SolrCrudRepository<Store, String>, StoreCrudOperations {
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>, StarbucksStoreCrudOperations {
 
     /**
      * find stores by name
@@ -22,7 +22,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @param name the name of store
      * @return a collection of stores, where the input match
      */
-    Collection<Store> findByName(@Param("name") final String name);
+    Collection<StarbucksStore> findByName(@Param("name") final String name);
 
 
     /**
@@ -31,7 +31,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @param products products query parameter
      * @return a collection of stores, where the input match
      */
-    Collection<Store> findByProductsIn(@Param("products") final Collection<String> products);
+    Collection<StarbucksStore> findByProductsIn(@Param("products") final Collection<String> products);
 
     /**
      * find all stores which provides the given products and are next to a geo point and given distance
@@ -41,7 +41,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @param distance radius distance to the geo point
      * @return a collection of stores, where the input match
      */
-    Collection<Store> findByProductsInAndLocationNear(@Param("products") final Collection<String> products, @Param
+    Collection<StarbucksStore> findByProductsInAndLocationNear(@Param("products") final Collection<String> products, @Param
             ("point") final Point point, final @Param("distance") Distance distance);
 
     /**
@@ -51,7 +51,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @return a collection of stores, where the input match
      */
     @Query("name:?0")
-    Collection<Store> findByNameQuery(@Param("name") final String name);
+    Collection<StarbucksStore> findByNameQuery(@Param("name") final String name);
 
     /**
      * find stores by name
@@ -60,7 +60,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @return a collection of stores, where the input match
      */
     @Query(value = "*:*", filters = {"name:=?0"})
-    Collection<Store> findByNameFilterQuery(@Param("name") final String name);
+    Collection<StarbucksStore> findByNameFilterQuery(@Param("name") final String name);
 
     /**
      * find all stores which are next to a geo point and given distance
@@ -69,7 +69,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      * @param distance radius distance to the geo point
      * @return a collection of stores, where the input match
      */
-    Collection<Store> findByLocationNear(@Param("point") final Point point, @Param("distance") final Distance distance);
+    Collection<StarbucksStore> findByLocationNear(@Param("point") final Point point, @Param("distance") final Distance distance);
 
     /**
      * find all stores of a give zip code
@@ -80,7 +80,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      */
     @Query(value = "zipCode:?0")
     @Facet(fields = {"products"})
-    FacetPage<Store> findByZipCodeFacetOnProducts(@Param("zipCode") final String zipCode, final Pageable page);
+    FacetPage<StarbucksStore> findByZipCodeFacetOnProducts(@Param("zipCode") final String zipCode, final Pageable page);
 
     /**
      * find all stores
@@ -90,7 +90,7 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      */
     @Query(value = "*:*")
     @Facet(fields = {"products"})
-    FacetPage<Store> findByFacetOnProducts(final Pageable page);
+    FacetPage<StarbucksStore> findByFacetOnProducts(final Pageable page);
 
     /**
      * find all stores which provides the given products
@@ -101,5 +101,5 @@ public interface StoreRepository extends SolrCrudRepository<Store, String>, Stor
      */
     @Query(value = "*:*", filters = "products:?0")
     @Facet(fields = {"name"})
-    FacetPage<Store> findFacetOnName(@Param("products") final List<String> products, final Pageable page);
+    FacetPage<StarbucksStore> findFacetOnName(@Param("products") final List<String> products, final Pageable page);
 }

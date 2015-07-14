@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
 import org.tuxdevelop.spring.data.solr.demo.api.StoreService;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -24,29 +24,29 @@ public abstract class CommonStoreServiceIT {
         products.add("Tux");
         final Collection<String> services = new LinkedList<>();
         services.add("Live Hacking");
-        final Store store = new Store();
-        store.setStreet("Test Street");
-        store.setCity("Test City");
-        store.setLocation(new Point(40D, 40D));
-        store.setName("TestStarbucksStore");
-        store.setProducts(products);
-        store.setServices(services);
-        store.setZipCode("12345");
-        final Store addedStore = storeService.add(store);
-        assertThat(addedStore).isNotNull();
-        final Store gotStore = storeService.get(addedStore.getId());
-        assertThat(gotStore).isNotNull();
-        assertThat(gotStore.getProducts()).contains("Tux");
-        System.err.println(gotStore);
-        storeService.delete(addedStore.getId());
+        final StarbucksStore starbucksStore = new StarbucksStore();
+        starbucksStore.setStreet("Test Street");
+        starbucksStore.setCity("Test City");
+        starbucksStore.setLocation(new Point(40D, 40D));
+        starbucksStore.setName("TestStarbucksStore");
+        starbucksStore.setProducts(products);
+        starbucksStore.setServices(services);
+        starbucksStore.setZipCode("12345");
+        final StarbucksStore addedStarbucksStore = storeService.add(starbucksStore);
+        assertThat(addedStarbucksStore).isNotNull();
+        final StarbucksStore gotStarbucksStore = storeService.get(addedStarbucksStore.getId());
+        assertThat(gotStarbucksStore).isNotNull();
+        assertThat(gotStarbucksStore.getProducts()).contains("Tux");
+        System.err.println(gotStarbucksStore);
+        storeService.delete(addedStarbucksStore.getId());
     }
 
     @Test
     public void getIT() {
         final String id = "1";
-        final Store store = storeService.get(id);
-        assertThat(store).isNotNull();
-        System.err.println(store);
+        final StarbucksStore starbucksStore = storeService.get(id);
+        assertThat(starbucksStore).isNotNull();
+        System.err.println(starbucksStore);
     }
 
     @Test
@@ -55,27 +55,27 @@ public abstract class CommonStoreServiceIT {
         products.add("Tux");
         final Collection<String> services = new LinkedList<>();
         services.add("Live Hacking");
-        final Store store = new Store();
-        store.setStreet("Test Street");
-        store.setCity("Test City");
-        store.setLocation(new Point(40D, 40D));
-        store.setName("TestStarbucksStore");
-        store.setProducts(products);
-        store.setServices(services);
-        store.setZipCode("12345");
-        final Store addedStore = storeService.add(store);
-        assertThat(addedStore).isNotNull();
-        storeService.delete(addedStore.getId());
-        final Store gotStore = storeService.get(addedStore.getId());
-        assertThat(gotStore).isNull();
+        final StarbucksStore starbucksStore = new StarbucksStore();
+        starbucksStore.setStreet("Test Street");
+        starbucksStore.setCity("Test City");
+        starbucksStore.setLocation(new Point(40D, 40D));
+        starbucksStore.setName("TestStarbucksStore");
+        starbucksStore.setProducts(products);
+        starbucksStore.setServices(services);
+        starbucksStore.setZipCode("12345");
+        final StarbucksStore addedStarbucksStore = storeService.add(starbucksStore);
+        assertThat(addedStarbucksStore).isNotNull();
+        storeService.delete(addedStarbucksStore.getId());
+        final StarbucksStore gotStarbucksStore = storeService.get(addedStarbucksStore.getId());
+        assertThat(gotStarbucksStore).isNull();
     }
 
     @Test
     public void findByNameSystemIT() {
         final String nameToFind = "Steaming Kettle";
-        final Collection<Store> stores = storeService.findByName(nameToFind);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = storeService.findByName(nameToFind);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
     @Test
@@ -83,9 +83,9 @@ public abstract class CommonStoreServiceIT {
         final Double latitude = 43D;
         final Double longtitude = -71D;
         final Double distance = 10D;
-        final Collection<Store> stores = storeService.findNear(longtitude, latitude, distance, null);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(2);
+        final Collection<StarbucksStore> starbucksStores = storeService.findNear(longtitude, latitude, distance, null);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(2);
     }
 
     @Test
@@ -97,9 +97,9 @@ public abstract class CommonStoreServiceIT {
         final Double latitude = 43D;
         final Double longtitude = -71D;
         final Double distance = 10D;
-        final Collection<Store> stores = storeService.findNear(longtitude, latitude, distance, products);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = storeService.findNear(longtitude, latitude, distance, products);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
 }

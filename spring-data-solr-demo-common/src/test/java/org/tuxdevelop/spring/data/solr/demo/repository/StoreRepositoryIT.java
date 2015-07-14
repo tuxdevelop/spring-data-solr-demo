@@ -12,7 +12,7 @@ import org.springframework.data.solr.core.query.result.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.tuxdevelop.spring.data.solr.demo.configuration.ITConfiguration;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
 import org.tuxdevelop.spring.data.solr.demo.util.SolrInitializer;
 
 import java.util.Collection;
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StoreRepositoryIT {
 
     @Autowired
-    private StoreRepository storeRepository;
+    private StarbucksStoreRepository starbucksStoreRepository;
 
     @Autowired
     private SolrInitializer solrInitializer;
@@ -48,33 +48,33 @@ public class StoreRepositoryIT {
     @Test
     public void findByNameIT() {
         final String nameToFind = "Steaming Kettle";
-        final Collection<Store> stores = storeRepository.findByName(nameToFind);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByName(nameToFind);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
     @Test
     public void findByNameQueryIT() {
         final String nameToFind = "Steaming Kettle";
-        final Collection<Store> stores = storeRepository.findByNameQuery(nameToFind);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByNameQuery(nameToFind);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
     @Test
     public void findByNameFilterQueryIT() {
         final String nameToFind = "Steaming Kettle";
-        final Collection<Store> stores = storeRepository.findByNameFilterQuery(nameToFind);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByNameFilterQuery(nameToFind);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
     @Test
     public void findStoreByNameFilterQueryIT() {
         final String nameToFind = "Steaming Kettle";
-        final Collection<Store> stores = storeRepository.findStoreByNameFilterQuery(nameToFind);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findStoreByNameFilterQuery(nameToFind);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(1);
     }
 
 
@@ -82,11 +82,11 @@ public class StoreRepositoryIT {
     public void findByLocationNearIT() {
         final Point point = new Point(43, -71);
         final Distance distance = new Distance(10);
-        final Collection<Store> stores = storeRepository.findByLocationNear(point, distance);
-        assertThat(stores).isNotEmpty();
-        assertThat(stores).hasSize(2);
-        for (Store store : stores) {
-            System.out.println(store);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByLocationNear(point, distance);
+        assertThat(starbucksStores).isNotEmpty();
+        assertThat(starbucksStores).hasSize(2);
+        for (StarbucksStore starbucksStore : starbucksStores) {
+            System.out.println(starbucksStore);
         }
     }
 
@@ -96,9 +96,9 @@ public class StoreRepositoryIT {
         products.add("Lunch");
         products.add("Oven-warmed Food");
         products.add("Reserve Amenity");
-        final Collection<Store> stores = storeRepository.findByProductsIn(products);
-        assertThat(stores).isNotEmpty();
-        System.out.println("Size: " + stores.size());
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByProductsIn(products);
+        assertThat(starbucksStores).isNotEmpty();
+        System.out.println("Size: " + starbucksStores.size());
     }
 
     @Test
@@ -109,8 +109,8 @@ public class StoreRepositoryIT {
         products.add("Reserve Amenity");
         final Point point = new Point(43, -71);
         final Distance distance = new Distance(10);
-        final Collection<Store> stores = storeRepository.findByProductsInAndLocationNear(products, point, distance);
-        assertThat(stores).hasSize(1);
+        final Collection<StarbucksStore> starbucksStores = starbucksStoreRepository.findByProductsInAndLocationNear(products, point, distance);
+        assertThat(starbucksStores).hasSize(1);
     }
 
     /*
@@ -121,15 +121,15 @@ public class StoreRepositoryIT {
     public void updateProductsIT() {
         final String newProduct = "1&1 Handy Flat!";
         final String id = "1";
-        final Store store = storeRepository.findOne(id);
-        assertThat(store).isNotNull();
-        final Collection<String> products = store.getProducts();
+        final StarbucksStore starbucksStore = starbucksStoreRepository.findOne(id);
+        assertThat(starbucksStore).isNotNull();
+        final Collection<String> products = starbucksStore.getProducts();
         final Collection<String> newProducts = new LinkedList<>();
         newProducts.add(newProduct);
-        storeRepository.updateProducts(id, newProducts);
-        final Store updatedStore = storeRepository.findOne(id);
-        assertThat(updatedStore).isNotNull();
-        final Collection<String> updatedProducts = updatedStore.getProducts();
+        starbucksStoreRepository.updateProducts(id, newProducts);
+        final StarbucksStore updatedStarbucksStore = starbucksStoreRepository.findOne(id);
+        assertThat(updatedStarbucksStore).isNotNull();
+        final Collection<String> updatedProducts = updatedStarbucksStore.getProducts();
         assertThat(products).isNotEqualTo(updatedProducts);
         assertThat(updatedProducts).contains(newProduct);
     }
@@ -141,13 +141,13 @@ public class StoreRepositoryIT {
     @Test
     public void findByZipCodeFacetOnProductsIT() {
         final String zipCode = "03833-2105";
-        final FacetPage<Store> response = storeRepository.findByZipCodeFacetOnProducts(zipCode, new
+        final FacetPage<StarbucksStore> response = starbucksStoreRepository.findByZipCodeFacetOnProducts(zipCode, new
                 PageRequest(0, 20));
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         assertThat(response.getContent()).hasSize(3);
-        for (final Store store : response.getContent()) {
-            System.err.println(store);
+        for (final StarbucksStore starbucksStore : response.getContent()) {
+            System.err.println(starbucksStore);
         }
         Page<FacetFieldEntry> page = response.getFacetResultPage("products");
         final int size = page.getSize();
@@ -164,11 +164,11 @@ public class StoreRepositoryIT {
     public void findFacetOnNameIT() {
         final List<String> products = new LinkedList<>();
         products.add("Lunch");
-        final FacetPage<Store> response = storeRepository.findFacetOnName(products, new PageRequest(0, 20));
+        final FacetPage<StarbucksStore> response = starbucksStoreRepository.findFacetOnName(products, new PageRequest(0, 20));
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
-        for (final Store store : response.getContent()) {
-            System.err.println(store);
+        for (final StarbucksStore starbucksStore : response.getContent()) {
+            System.err.println(starbucksStore);
         }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
@@ -185,11 +185,11 @@ public class StoreRepositoryIT {
     public void findFacetOnNameSolrTemplateIT() {
         final List<String> products = new LinkedList<>();
         products.add("Lunch");
-        final FacetPage<Store> response = storeRepository.findFacetOnNameSolrTemplate(products);
+        final FacetPage<StarbucksStore> response = starbucksStoreRepository.findFacetOnNameSolrTemplate(products);
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
-        for (final Store store : response.getContent()) {
-            System.err.println(store);
+        for (final StarbucksStore starbucksStore : response.getContent()) {
+            System.err.println(starbucksStore);
         }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("name");
         final int size = page.getSize();
@@ -204,13 +204,13 @@ public class StoreRepositoryIT {
 
     @Test
     public void findByFacetOnProductsIT() {
-        final FacetPage<Store> response = storeRepository.findByFacetOnProducts(new
+        final FacetPage<StarbucksStore> response = starbucksStoreRepository.findByFacetOnProducts(new
                 PageRequest(0, 100));
         assertThat(response).isNotNull();
         assertThat(response.getContent()).isNotEmpty();
         assertThat(response.getContent()).hasSize(100);
-        for (final Store store : response.getContent()) {
-            System.err.println(store);
+        for (final StarbucksStore starbucksStore : response.getContent()) {
+            System.err.println(starbucksStore);
         }
         final Page<FacetFieldEntry> page = response.getFacetResultPage("products");
         final int size = page.getSize();
@@ -228,21 +228,40 @@ public class StoreRepositoryIT {
      */
 
     @Test
+    public void groupByCityIT() {
+        final Point point = new Point(43, -71);
+        final Distance distance = new Distance(100);
+        final Integer pageNumber = 0;
+        final GroupPage<StarbucksStore> response = starbucksStoreRepository.findByLocationAndgroupByCity(point, distance, pageNumber);
+        GroupResult<StarbucksStore> groupResult = response.getGroupResult("city");
+        final Page<GroupEntry<StarbucksStore>> groupEntries = groupResult.getGroupEntries();
+        for (final GroupEntry<StarbucksStore> groupEntry : groupEntries) {
+            final String groupValue = groupEntry.getGroupValue();
+            System.err.println("groupValue: " + groupValue);
+            final List<StarbucksStore> groupContet = groupEntry.getResult().getContent();
+            System.err.println("Members of the group: ");
+            for (final StarbucksStore starbucksStore : groupContet) {
+                System.err.println(starbucksStore);
+            }
+        }
+    }
+
+    @Test
     public void groupByZipCodeIT() {
         final String lunch = "Lunch";
         final List<String> products = new LinkedList<>();
         products.add(lunch);
-        final GroupPage<Store> response = storeRepository.groupByZipCode(products);
+        final GroupPage<StarbucksStore> response = starbucksStoreRepository.groupByZipCode(products);
         System.err.println("-----------------------");
-        GroupResult<Store> groupResult = response.getGroupResult("zipCode");
-        final Page<GroupEntry<Store>> groupEntries = groupResult.getGroupEntries();
-        for (final GroupEntry<Store> groupEntry : groupEntries) {
+        GroupResult<StarbucksStore> groupResult = response.getGroupResult("zipCode");
+        final Page<GroupEntry<StarbucksStore>> groupEntries = groupResult.getGroupEntries();
+        for (final GroupEntry<StarbucksStore> groupEntry : groupEntries) {
             final String groupValue = groupEntry.getGroupValue();
             System.err.println("groupValue: " + groupValue);
-            final List<Store> groupContet = groupEntry.getResult().getContent();
+            final List<StarbucksStore> groupContet = groupEntry.getResult().getContent();
             System.err.println("Members of the group: ");
-            for (final Store store : groupContet) {
-                System.err.println(store);
+            for (final StarbucksStore starbucksStore : groupContet) {
+                System.err.println(starbucksStore);
             }
         }
     }

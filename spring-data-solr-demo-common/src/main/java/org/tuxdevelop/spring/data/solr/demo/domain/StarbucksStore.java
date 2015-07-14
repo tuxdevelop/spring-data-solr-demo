@@ -17,7 +17,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @SolrDocument
 @XmlRootElement
-public class Store {
+public class StarbucksStore {
 
     @Id
     @Field("id")

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
 
 @Slf4j
 public abstract class ITTests {
@@ -29,9 +29,9 @@ public abstract class ITTests {
         final HttpEntity<?> httpEntity = getHttpEntity();
         final String uri = baseUrl + "/{id}";
         log.info("query url: " + uri);
-        final ResponseEntity<Store> response =
+        final ResponseEntity<StarbucksStore> response =
                 restTemplate.exchange(uri, HttpMethod.GET, httpEntity,
-                        Store.class, id);
+                        StarbucksStore.class, id);
         System.out.println(response);
     }
 
@@ -46,9 +46,9 @@ public abstract class ITTests {
         final String uri = uriComponentsBuilder.build().encode().toUriString();
         log.info("query url: " + uri);
 
-        final ResponseEntity<Store> response =
+        final ResponseEntity<StarbucksStore> response =
                 restTemplate.exchange(uri, HttpMethod.GET, httpEntity,
-                        Store.class);
+                        StarbucksStore.class);
         System.out.println(response);
     }
 
@@ -62,9 +62,9 @@ public abstract class ITTests {
 
         log.info("query url: " + uriComponentsBuilder.build().toUri());
 
-        final ResponseEntity<Store> response =
+        final ResponseEntity<StarbucksStore> response =
                 restTemplate.exchange(uriComponentsBuilder.build().toUri(), HttpMethod.GET, httpEntity,
-                        Store.class);
+                        StarbucksStore.class);
         System.out.println(response);
     }
 

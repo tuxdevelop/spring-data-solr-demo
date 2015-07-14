@@ -15,8 +15,8 @@ import org.springframework.data.geo.Point;
 import org.springframework.data.solr.UncategorizedSolrException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
-import org.tuxdevelop.spring.data.solr.demo.domain.Store;
-import org.tuxdevelop.spring.data.solr.demo.repository.StoreRepository;
+import org.tuxdevelop.spring.data.solr.demo.domain.StarbucksStore;
+import org.tuxdevelop.spring.data.solr.demo.repository.StarbucksStoreRepository;
 
 import java.util.*;
 
@@ -40,13 +40,13 @@ public class SolrInitializer {
     private static final Double MIN_Y = -90.0;
 
     @Autowired
-    private StoreRepository storeRepository;
+    private StarbucksStoreRepository starbucksStoreRepository;
 
     public void importStarbucks() throws Exception {
-        final List<List<Store>> stores = importStores();
-        for (List<Store> storeList : stores) {
+        final List<List<StarbucksStore>> stores = importStores();
+        for (List<StarbucksStore> starbucksStoreList : stores) {
             try {
-                storeRepository.save(storeList);
+                starbucksStoreRepository.save(starbucksStoreList);
             } catch (UncategorizedSolrException e) {
                 log.error(e.getMessage());
             }
@@ -54,13 +54,13 @@ public class SolrInitializer {
 
     }
 
-    private List<List<Store>> importStores() throws Exception {
+    private List<List<StarbucksStore>> importStores() throws Exception {
         final ClassPathResource resource = new ClassPathResource("starbucks.csv");
         final Scanner scanner = new Scanner(resource.getInputStream());
         final String line = scanner.nextLine();
         scanner.close();
 
-        final FlatFileItemReader<Store> itemReader = new FlatFileItemReader<Store>();
+        final FlatFileItemReader<StarbucksStore> itemReader = new FlatFileItemReader<StarbucksStore>();
         itemReader.setResource(resource);
 
         // DelimitedLineTokenizer defaults to comma as its delimiter
@@ -68,42 +68,42 @@ public class SolrInitializer {
         tokenizer.setNames(line.split(","));
         tokenizer.setStrict(false);
 
-        final DefaultLineMapper<Store> lineMapper = new DefaultLineMapper<Store>();
+        final DefaultLineMapper<StarbucksStore> lineMapper = new DefaultLineMapper<StarbucksStore>();
         lineMapper.setLineTokenizer(tokenizer);
         lineMapper.setFieldSetMapper(StoreFieldSetMapper.INSTANCE);
         itemReader.setLineMapper(lineMapper);
         itemReader.setRecordSeparatorPolicy(new DefaultRecordSeparatorPolicy());
         itemReader.setLinesToSkip(1);
         itemReader.open(new ExecutionContext());
-        final List<List<Store>> stores = new LinkedList<>();
-        List<Store> storeList = new LinkedList<>();
-        Store store;
+        final List<List<StarbucksStore>> stores = new LinkedList<>();
+        List<StarbucksStore> starbucksStoreList = new LinkedList<>();
+        StarbucksStore starbucksStore;
         int id = 1;
         int currentCount = 1;
         do {
-            store = itemReader.read();
-            if (store != null) {
-                store.setId(String.valueOf(id));
-                storeList.add(store);
+            starbucksStore = itemReader.read();
+            if (starbucksStore != null) {
+                starbucksStore.setId(String.valueOf(id));
+                starbucksStoreList.add(starbucksStore);
                 id++;
                 currentCount++;
             }
             if (currentCount == 1000) {
-                stores.add(new LinkedList<>(storeList));
+                stores.add(new LinkedList<>(starbucksStoreList));
                 currentCount = 1;
-                storeList = new LinkedList<>();
+                starbucksStoreList = new LinkedList<>();
             }
-        } while (store != null);
+        } while (starbucksStore != null);
 
         return stores;
     }
 
-    private enum StoreFieldSetMapper implements FieldSetMapper<Store> {
+    private enum StoreFieldSetMapper implements FieldSetMapper<StarbucksStore> {
 
         INSTANCE;
 
         @Override
-        public Store mapFieldSet(FieldSet fields) throws BindException {
+        public StarbucksStore mapFieldSet(FieldSet fields) throws BindException {
             final Double longtitudeRead = fields.readDouble(LONGTITUDE);
             final Double latitudeRead = fields.readDouble(LATITUDE);
             final Point location = getLocationPoint(longtitudeRead, latitudeRead);
@@ -116,7 +116,7 @@ public class SolrInitializer {
             final Collection<String> products = Arrays.asList(productsString.split(","));
             final String servicesString = fields.readString(FEATURES_SERVICES);
             final Collection<String> services = Arrays.asList(servicesString.split(","));
-            return new Store(null, name, zipCode, city, street, products, services, location);
+            return new StarbucksStore(null, name, zipCode, city, street, products, services, location);
         }
 
         private Point getLocationPoint(final Double longtitudeRead, final Double latitudeRead) {

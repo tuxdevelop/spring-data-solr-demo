@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
-import org.tuxdevelop.spring.data.solr.demo.repository.StoreRepository;
+import org.tuxdevelop.spring.data.solr.demo.repository.StarbucksStoreRepository;
 
 import javax.annotation.PreDestroy;
 
@@ -26,7 +26,7 @@ public class ITConfiguration {
 
     @PreDestroy
     @Autowired
-    public void deleteAll(final StoreRepository storeRepository) {
-        storeRepository.deleteAll();
+    public void deleteAll(final StarbucksStoreRepository starbucksStoreRepository) {
+        starbucksStoreRepository.deleteAll();
     }
 }

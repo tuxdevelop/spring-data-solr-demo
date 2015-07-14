@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
-import org.tuxdevelop.spring.data.solr.demo.repository.StoreRepository;
+import org.tuxdevelop.spring.data.solr.demo.repository.StarbucksStoreRepository;
 import org.tuxdevelop.spring.data.solr.demo.util.SolrInitializer;
 
 import javax.annotation.PostConstruct;
@@ -18,7 +18,7 @@ public class SolrDataRestApplication {
 	private SolrInitializer solrInitializer;
 
 	@Autowired
-	private StoreRepository storeRepository;
+	private StarbucksStoreRepository starbucksStoreRepository;
 
 	public static void main(final String[] args) {
 		SpringApplication.run(SolrDataRestApplication.class, args);
@@ -31,6 +31,6 @@ public class SolrDataRestApplication {
 
 	@PreDestroy
 	public void deleteAll() {
-		storeRepository.deleteAll();
+		starbucksStoreRepository.deleteAll();
 	}
 }
