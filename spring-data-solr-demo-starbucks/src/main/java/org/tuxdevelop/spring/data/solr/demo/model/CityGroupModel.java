@@ -35,4 +35,7 @@ public class CityGroupModel {
         return currentPage > 0;
     }
 
+    public Boolean isNotEmpty() {
+        return groupEntries != null && groupEntries.getContent().size() > 0;
+    }
 }

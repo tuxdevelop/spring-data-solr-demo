@@ -51,7 +51,7 @@
             <tbody>
             <tr th:each="groupEntry : ${cityGroup.groupEntries}">
                 <td>
-                    <h4 th:text="'City Group Name' + ${groupEntry.groupValue}"/>
+                    <h4 th:text="'City Group Name: ' + ${groupEntry.groupValue}"/>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
@@ -98,7 +98,7 @@
         </table>
     </div>
 
-    <div class="container">
+    <div class="container" th:if="${cityGroup.isNotEmpty()}">
         <a href="#"
            th:href="@{citiesPrev (page=${cityGroup.currentPage}-1,longtitude=${location.longtitude},
               latitude=${location.latitude},distance=${location.distance})}">

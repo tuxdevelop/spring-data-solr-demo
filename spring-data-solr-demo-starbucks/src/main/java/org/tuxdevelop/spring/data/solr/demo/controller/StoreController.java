@@ -127,12 +127,15 @@ public class StoreController {
     }
 
     @RequestMapping(value = "/citiesNext", method = RequestMethod.GET)
-    public String getCitiesNext(@RequestParam(value = "latitude", defaultValue = "-90") final Double latitude, @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude, @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue, @RequestParam(value = "page") final Integer currentPage, final Model model) {
+    public String getCitiesNext(@RequestParam(value = "latitude", defaultValue = "-90") final Double latitude,
+                                @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude,
+                                @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue,
+                                @RequestParam(value = "page") final Integer currentPage, final Model model) {
         final Point point = new Point(latitude, longtitude);
         final Distance distance = new Distance(distanceValue);
-        final CityGroupModel cityGroupModel = new CityGroupModel();
         GroupPage<StarbucksStore> response = starbucksStoreRepository.findByLocationAndgroupByCity(point, distance, currentPage);
         Page<GroupEntry<StarbucksStore>> groupPage = response.getGroupResult("city").getGroupEntries();
+        final CityGroupModel cityGroupModel = new CityGroupModel();
         cityGroupModel.setGroupEntries(groupPage);
         cityGroupModel.setCurrentPage(currentPage);
         final LocationViewModel locationViewModel = new LocationViewModel();
@@ -146,12 +149,14 @@ public class StoreController {
 
     @RequestMapping(value = "/citiesPrev", method = RequestMethod.GET)
     public String getCitiesPrev(@RequestParam(value = "latitude", defaultValue = "-90") final Double latitude,
-                                @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude, @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue, @RequestParam(value = "page") final Integer currentPage, final Model model) {
+                                @RequestParam(value = "longtitude", defaultValue = "-90") final Double longtitude,
+                                @RequestParam(value = "distance", defaultValue = "0") final Double distanceValue,
+                                @RequestParam(value = "page") final Integer currentPage, final Model model) {
         final Point point = new Point(latitude, longtitude);
         final Distance distance = new Distance(distanceValue);
-        final CityGroupModel cityGroupModel = new CityGroupModel();
         GroupPage<StarbucksStore> response = starbucksStoreRepository.findByLocationAndgroupByCity(point, distance, currentPage);
         Page<GroupEntry<StarbucksStore>> groupPage = response.getGroupResult("city").getGroupEntries();
+        final CityGroupModel cityGroupModel = new CityGroupModel();
         cityGroupModel.setGroupEntries(groupPage);
         cityGroupModel.setCurrentPage(currentPage);
         final LocationViewModel locationViewModel = new LocationViewModel();
