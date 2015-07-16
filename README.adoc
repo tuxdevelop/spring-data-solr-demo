@@ -27,4 +27,10 @@ The data-rest module contains a sample Spring-Boot application, which combines S
 The jaxrs module contains a Spring-Boot application with a several service layer. The service layer expose a JaxRS 2
 interface. The service uses Jersey as implementation.
 
+=== Starbucks
+
+The starbucks module contains a Spring Boot web application, which provides features to use the search implementations
+via user interface.
+
+
 
