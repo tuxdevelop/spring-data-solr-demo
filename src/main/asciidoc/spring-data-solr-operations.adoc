@@ -70,6 +70,54 @@ public FacetPage<Store> findFacetOnNameSolrTemplate(final List<String> products)
   }
 ----
 
+=== Group By City
+
+[source, language="java"]
+----
+  final Point point = new Point(43, -71);
+  final Distance distance = new Distance(100);
+  final Integer pageNumber = 0;
+
+  final GroupPage<StarbucksStore> response = starbucksStoreRepository.
+                                    findByLocationAndgroupByCity(point, distance, pageNumber);
+
+  GroupResult<StarbucksStore> groupResult = response.getGroupResult("city");
+
+  final Page<GroupEntry<StarbucksStore>> groupEntries = groupResult.getGroupEntries();
+
+  for (final GroupEntry<StarbucksStore> groupEntry : groupEntries) {
+        final String groupValue = groupEntry.getGroupValue();
+        System.err.println("groupValue: " + groupValue);
+        final List<StarbucksStore> groupContet = groupEntry.getResult().getContent();
+        System.err.println("Members of the group: ");
+        for (final StarbucksStore starbucksStore : groupContet) {
+            System.err.println(starbucksStore);
+        }
+   }
+----
+
+=== Group By City
+
+[source, language="java"]
+----
+groupValue: epping
+Members of the group:
+StarbucksStore(id=1, name=Epping Main St, zipCode=03042-2224,
+    city=Epping, street=96 Calef Highway,
+    products=[Lunch, Oven-warmed Food,  Reserve Amenity],
+    services=[Starbucks Card Mobile,  Wireless Hotspot],
+    location=Point [x=43.031873, y=-71.073203])
+
+groupValue: exeter
+Members of the group:
+StarbucksStore(id=2, name=Stop & Shop-Exeter #204, zipCode=03833-2105,
+    city=Exeter, street=139 Portsmouth Ave,
+    products=[],
+    services=[Wireless Hotspot],
+    location=Point [x=42.989763, y=-70.932044])
+
+....
+----
 
 === Partial Updates
 

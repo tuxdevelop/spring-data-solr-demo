@@ -368,7 +368,42 @@ Found: batch</code></pre></div></div></section></section>
         query.setPageRequest(<span class="keyword">new</span> PageRequest(pageNumber, <span class="integer">20</span>));
 
         <span class="keyword">return</span> solrTemplate.queryForGroupPage(query, StarbucksStore.class);
-  }</code></pre></div></div></section><section id="_partial_updates"><h2>Partial Updates</h2></section><section id="_update_the_products_of_an_existing_store"><h2>Update the products of an existing Store</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+  }</code></pre></div></div></section><section id="_group_by_city_2"><h2>Group By City</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">  <span class="directive">final</span> <span class="predefined-type">Point</span> point = <span class="keyword">new</span> <span class="predefined-type">Point</span>(<span class="integer">43</span>, -<span class="integer">71</span>);
+  <span class="directive">final</span> Distance distance = <span class="keyword">new</span> Distance(<span class="integer">100</span>);
+  <span class="directive">final</span> <span class="predefined-type">Integer</span> pageNumber = <span class="integer">0</span>;
+
+  <span class="directive">final</span> GroupPage&lt;StarbucksStore&gt; response = starbucksStoreRepository.
+                                    findByLocationAndgroupByCity(point, distance, pageNumber);
+
+  GroupResult&lt;StarbucksStore&gt; groupResult = response.getGroupResult(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>);
+
+  <span class="directive">final</span> Page&lt;GroupEntry&lt;StarbucksStore&gt;&gt; groupEntries = groupResult.getGroupEntries();
+
+  <span class="keyword">for</span> (<span class="directive">final</span> GroupEntry&lt;StarbucksStore&gt; groupEntry : groupEntries) {
+        <span class="directive">final</span> <span class="predefined-type">String</span> groupValue = groupEntry.getGroupValue();
+        <span class="predefined-type">System</span>.err.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">groupValue: </span><span class="delimiter">&quot;</span></span> + groupValue);
+        <span class="directive">final</span> <span class="predefined-type">List</span>&lt;StarbucksStore&gt; groupContet = groupEntry.getResult().getContent();
+        <span class="predefined-type">System</span>.err.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Members of the group: </span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">for</span> (<span class="directive">final</span> StarbucksStore starbucksStore : groupContet) {
+            <span class="predefined-type">System</span>.err.println(starbucksStore);
+        }
+   }</code></pre></div></div></section><section id="_group_by_city_3"><h2>Group By City</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">groupValue: epping
+Members of the group:
+StarbucksStore(id=<span class="integer">1</span>, name=Epping Main St, zipCode=<span class="octal">03042</span>-<span class="integer">2224</span>,
+    city=Epping, street=<span class="integer">96</span> Calef Highway,
+    products=[Lunch, Oven-warmed Food,  Reserve Amenity],
+    services=[Starbucks Card Mobile,  Wireless Hotspot],
+    location=<span class="predefined-type">Point</span> [x=<span class="float">43.031873</span>, y=-<span class="float">71.073203</span>])
+
+groupValue: exeter
+Members of the group:
+StarbucksStore(id=<span class="integer">2</span>, name=Stop &amp; Shop-Exeter <span class="error">#</span><span class="integer">204</span>, zipCode=<span class="integer">03833</span>-<span class="integer">2105</span>,
+    city=Exeter, street=<span class="integer">139</span> Portsmouth Ave,
+    products=<span class="type">[]</span>,
+    services=[Wireless Hotspot],
+    location=<span class="predefined-type">Point</span> [x=<span class="float">42.989763</span>, y=-<span class="float">70.932044</span>])
+
+....</code></pre></div></div></section><section id="_partial_updates"><h2>Partial Updates</h2></section><section id="_update_the_products_of_an_existing_store"><h2>Update the products of an existing Store</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
 <span class="directive">private</span> SolrTemplate solrTemplate;
 
 <span class="annotation">@Override</span>
