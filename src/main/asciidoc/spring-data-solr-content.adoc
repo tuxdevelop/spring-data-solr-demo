@@ -2,6 +2,7 @@
 
 == What You Get
 
+[%step]
 * High level repository abstractions with multicore support
 * Annotations for Boost-, Facet- and Highlighting
 * Customizable type mappings and type conversions

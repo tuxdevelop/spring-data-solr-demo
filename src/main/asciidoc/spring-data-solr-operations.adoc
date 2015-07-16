@@ -1,12 +1,79 @@
-== Solr Operations
+== Solr Template Operations
+
+=== Filter Query
+
+=== Find By Name
+
+[source, language="java"]
+----
+@Override
+public Collection<Store> FindStoreByNameFilterQuery(final String name){
+   final SimpleQuery query = new SimpleQuery(new Criteria());
+
+   final FilterQuery filterQuery = new SimpleFilterQuery(new Criteria("name").is(name));
+
+   query.addFilterQuery(filterQuery);
+
+   ScoredPage<Store> result = solrTemplate.queryForPage(query, Store.class);
+   return result.getContent();
+}
+----
+
+=== Faceting
+
+=== Facet on Name
+
+[source, language="java"]
+----
+@Override
+public FacetPage<Store> findFacetOnNameSolrTemplate(final List<String> products) {
+
+  final String parameter = convertListToParameterString(products);
+
+  final FacetQuery facetQuery = new SimpleFacetQuery(new SimpleStringCriteria("*:*"))
+                                           .setFacetOptions(new FacetOptions("name"));
+
+  final FilterQuery filterQuery = new SimpleFilterQuery(
+                                    new SimpleStringCriteria("products:" + parameter));
+
+  facetQuery.setPageRequest(new PageRequest(0, 20));
+
+  facetQuery.addFilterQuery(filterQuery);
+
+  return solrTemplate.queryForFacetPage(facetQuery, Store.class);
+}
+----
+
+=== Grouping
+
+=== Group By City
+
+[source, language="java"]
+----
+  @Override
+  public GroupPage<StarbucksStore> findByLocationAndgroupByCity(
+                                                        final Point point,
+                                                        final Distance distance,
+                                                        final Integer pageNumber) {
+
+        final Field cityField = new SimpleField("city");
+
+        final Query query = new SimpleQuery(new Criteria("location").near(point, distance));
+
+        final GroupOptions groupOptions = new GroupOptions().addGroupByField(cityField);
+
+        query.setGroupOptions(groupOptions);
+
+        query.setPageRequest(new PageRequest(pageNumber, 20));
+
+        return solrTemplate.queryForGroupPage(query, StarbucksStore.class);
+  }
+----
+
 
 === Partial Updates
 
-=== Partial Updates
-
-* Update the products of an existing Store
-
-=== Partial Updates
+=== Update the products of an existing Store
 
 [source, language="java"]
 ----
@@ -15,115 +82,14 @@ private SolrTemplate solrTemplate;
 
 @Override
 public void updateProducts(String id, Collection<String> products) {
+
     final PartialUpdate partialUpdate = new PartialUpdate("id", id);
+
     partialUpdate.add("products", products);
+
     solrTemplate.saveBean(partialUpdate);
+
     solrTemplate.commit();
-}
-----
-
-=== Filter Query
-
-=== Filter Query
-
-* Find Stores by Name, using Filter Query
-
-=== Filter Query
-
-==== @Query Annotation
-
-[source, language="java"]
-----
-
-@Query(value = "*:*", filters = {"name:=?0"})
-Collection<Store> findByNameFilterQuery(final String name);
-
-----
-
-=== Filter Query
-
-==== Solr Template
-
-[source, language="java"]
-----
-@Override
-public Collection<Store> FindStoreByNameFilterQuery(final String name){
-   final SimpleQuery query = new SimpleQuery(new Criteria());
-   final FilterQuery filterQuery =
-            new SimpleFilterQuery(new Criteria("name").is(name));
-   query.addFilterQuery(filterQuery);
-   ScoredPage<Store> result =
-            solrTemplate.queryForPage(query, Store.class);
-   return result.getContent();
-}
-----
-
-=== Faceting
-
-=== Faceting
-
-* Find stores by product, using Filter and "facet" by name
-* Find stores by zipCode and "facet" by products
-
-=== Faceting
-
-[source, language="java"]
-----
-@Query(value = "*:*", filters = "products:?0")
-@Facet(fields = {"name"})
-FacetPage<Store> findFacetOnName(@Param("products")
-        final List<String> products, final Pageable page);
-----
-
-[source, language="java"]
-----
-@Query(value = "zipCode:?0")
-@Facet(fields = {"products"})
-FacetPage<Store> findByZipCodeFacetOnProducts(
-    @Param("zipCode") final String zipCode,
-    final Pageable page);
-----
-
-=== Faceting
-
-[source, language="java"]
-----
-@Override
-public FacetPage<Store> findFacetOnNameSolrTemplate(
-        final List<String> products) {
-  final String parameter = convertListToParameterString(products);
-  final FacetQuery facetQuery = new SimpleFacetQuery(
-                new SimpleStringCriteria("*:*"))
-      .setFacetOptions(new FacetOptions("name"));
-  final FilterQuery filterQuery = new SimpleFilterQuery(
-                new SimpleStringCriteria("products:" + parameter));
-  facetQuery.setPageRequest(new PageRequest(0, 20));
-  facetQuery.addFilterQuery(filterQuery);
-  return solrTemplate.queryForFacetPage(facetQuery, Store.class);
-}
-----
-
-=== Grouping
-
-=== Grouping
-
-* Find Stores by products and group by zipCode
-
-=== Grouping
-[source, language="java"]
-----
-@Override
-public GroupPage<Store> groupByZipCode(final List<String> products) {
-  final Field zipCodeField = new SimpleField("zipCode");
-  final Query query = new SimpleQuery(new Criteria("products")
-            .contains(products));
-  final SimpleQuery groupQuery =
-             new SimpleQuery(new SimpleStringCriteria("*:*"));
-  final GroupOptions groupOptions = new GroupOptions()
-      .addGroupByField(zipCodeField)
-      .addGroupByQuery(query);
-   groupQuery.setGroupOptions(groupOptions);
-   return solrTemplate.queryForGroupPage(groupQuery, Store.class)
 }
 ----
 

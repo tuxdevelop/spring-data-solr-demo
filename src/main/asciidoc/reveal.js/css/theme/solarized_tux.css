@@ -157,7 +157,7 @@ body {
 .reveal pre {
     display: block;
     position: relative;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
     text-align: left;
     font-size: 0.55em;
@@ -175,16 +175,19 @@ body {
     display: block;
     padding: 5px;
     overflow: auto;
-    max-height: 400px;
+    max-height: 600px;
+    max-width: 1000px;
     word-wrap: normal;
     background: #FFFFFF;
     color: #657b83;
+    font-size: 0.77em;
 }
 
 .reveal table {
     margin: auto;
     border-collapse: collapse;
     border-spacing: 0;
+    width: 95%;
 }
 
 .reveal table th {
@@ -195,7 +198,7 @@ body {
     text-align: left;
     padding: 0.2em 0.5em 0.2em 0.5em;
     border-bottom: 1px solid;
-    font-size: 0.7em;
+    font-size: 0.5em;
 }
 
 .reveal table th[align="center"], .reveal table td[align="center"] {

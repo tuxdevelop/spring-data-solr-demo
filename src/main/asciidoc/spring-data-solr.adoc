@@ -6,6 +6,8 @@ Marcel Becker <marcel.becker@1und1.de>
 :revealjs_transition: zoom
 :revealjs_progress: true
 :source-highlighter: coderay
+:revealjs_previewLinks: true
+:revealjs_slideNumber: true
 :imagesdir: images
 :data-uri:
 :toc:

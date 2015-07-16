@@ -6,8 +6,7 @@
 
 [source, language="java"]
 ----
-public interface StoreCrudRepository
-                extends SolrCrudRepository<Store, String> {
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String> {
 
 }
 ----
@@ -15,17 +14,20 @@ public interface StoreCrudRepository
 [source, language="java"]
 ----
 @Autowired
-private StoreCrudRepository storeCrudRepository;
+private StarbucksStoreRepository starbucksStoreRepository;
 
 ...
-    storeCrudRepository.save(store);
-    storeCrudRepository.save(storeCollection)
-    storeCrudRepository.delete(store);
-    storeCrudRepository.delete("1");
-    storeCrudRepository.deteleAll();
-    storeCrudRepository.count();
-    storeCrudRepository.findOne("1");
-    storeCrudRepository.findAll();
+private final StarbucksStore starbucksStore = new StarbucksStore();
+starbucksStore.setId("1");
+...
+    starbucksStoreRepository.save(starbucksStore);
+    starbucksStoreRepository.save(storeCollection)
+    starbucksStoreRepository.delete(starbucksStore);
+    starbucksStoreRepository.delete("1");
+    starbucksStoreRepository.deteleAll();
+    final Long count = starbucksStoreRepository.count();
+    final StarbucksStore foundStore = starbucksStoreRepository.findOne("1");
+    final Collection<StarbucksStore> stores = starbucksStoreRepository.findAll();
 ...
 ----
 
@@ -37,87 +39,162 @@ private StoreCrudRepository storeCrudRepository;
 [source, language="java"]
 ----
 @SolrDocument
-public class Store {
-
-    @Id
-    @Field("id")
-    private String id;
-    @Field("name")
-    private String name;
-    @Field("zipCode")
-    private String zipCode;
-    @Field("city")
-    private String city;
-    @Field("street")
-    private String street;
-    @Field("location")
-    private Point location;
+public class StarbucksStore {
+   @Id
+   @Field("id")
+   private String id;
+   @Field("name")
+   private String name;
+   @Field("zipCode")
+   private String zipCode;
+   @Field("city")
+   private String city;
+   @Field("street")
+   private String street;
+   @Field("products")
+   private Collection<String> products;
+   @Field("services")
+   private Collection<String> services;
+   @Field("location")
+   private Point location;
 }
 ----
 
 === Creating from Method Names
 
-[source, language="java"]
-----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
-
-    Collection<Store> findByName(final String name);
-
-}
-----
-
-=== Creating from Method Names
+=== Find By Name
 
 [source, language="java"]
 ----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
 
-    Collection<Store> findByName(final String name);
+    /**
+     * find stores by name
+     *
+     * @param name the name of store
+     * @return a collection of stores, where the input match
+     */
+    Collection<StarbucksStore> findByName(final String name);
+
 
 }
 ----
-
-==== Solr Query
 
 ----
     q=name: ?0
 ----
 
-=== Creating from Method Names
+=== Find By Name
 
 [source, language="java"]
 ----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
 
-    Collection<Store> findByName(final String name);
-    Collection<Store> findByLocationNear(final Point point,
-                                         final Distance distance);
+@Autowired
+private StarbucksStoreRepository starbucksStoreRepository;
+
+...
+    Collection<StarbucksStore> result = starbucksStoreRepository.findByName("Boston");
+...
+----
+
+----
+    q=name: 'Boston'
+----
+
+=== Find By Products
+
+=== Find By Products
+
+[source, language="java"]
+----
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
+
+    /**
+     * find all stores whoch provides the given products
+     *
+     * @param products products query parameter
+     * @return a collection of stores, where the input match
+     */
+     Collection<StarbucksStore> findByProductsIn(final Collection<String> products);
 
 }
 ----
 
+----
+    q=products:(?0…​ )
+----
 
-=== Creating from Method Names
+
+=== Find By Products
 
 [source, language="java"]
 ----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
 
-    Collection<Store> findByName(final String name);
-    Collection<Store> findByLocationNear(final Point point,
-                                         final Distance distance);
+@Autowired
+private StarbucksStoreRepository starbucksStoreRepository;
 
+...
+    final Collection<String> products = new LinkedList<>();
+    products.add("food");
+    products.add("lunch");
+
+    Collection<StarbucksStore> result = starbucksStoreRepository.findByProductsIn(products);
+...
+
+----
+
+----
+q=products:('food' 'lunch')
+----
+
+=== Find By Location
+
+=== Find By Location
+
+[source, language="java"]
+----
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
+     /**
+     * find all stores which provides the given products and are
+     * next to a geo point and given distance
+     *
+     * @param products products query parameter
+     * @param point    geo location
+     * @param distance radius distance to the geo point
+     * @return a collection of stores, where the input match
+     */
+    Collection<StarbucksStore> findByProductsInAndLocationNear(final Collection<String> products,
+                                                               final Point point,
+                                                               final Distance distance);
 }
 ----
 
-==== Solr Query
+----
+    q=products:(?0…​ ) AND {!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
+----
+
+=== Find By Location
+
+[source, language="java"]
+----
+@Autowired
+private StarbucksStoreRepository starbucksStoreRepository;
+    ...
+    final Collection<String> products = new LinkedList<>();
+    products.add("food");
+    products.add("lunch");
+
+    final Point point = new Point(72D, -42D);
+    final Distance distance = new Distance(100D);
+
+    Collection<StarbucksStore> result = starbucksStoreRepository
+                        .findByProductsInAndLocationNear(products,point,distance);
+    ...
 
 ----
-q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
+
+----
+    q=products:('food' 'lunch') AND {!bbox pt=72,-42 sfield=location d=100}
 ----
 
 === Creating from Method Names
@@ -128,20 +205,13 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 |Or |findByNameOrPopularity |q=name:?0 OR popularity:?1
 |Is|findByName|q=name:?0
 |Not|findByNameNot|q=-name:?0
-
-|====
-
-
-=== Creating from Method Names
-
-|====
-
 |IsNull |findByNameIsNull|q=-name:[* TO *]
 |IsNotNull|findByNameIsNotNull|q=name:[* TO *]
 |Between| findByPopularityBetween|q=popularity:[?0 TO ?1]
 |LessThan|findByPopularityLessThan|q=popularity:[* TO ?0}
 
 |====
+
 
 === Creating from Method Names
 
@@ -151,13 +221,6 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 |GreaterThan|findByPopularityGreaterThan|q=popularity:{?0 TO *]
 |GreaterThanEqual|findByPopularityGreaterThanEqual|q=popularity:[?0 TO *]
 |Before|findByLastModifiedBefore|q=last_modified:[* TO ?0}
-
-|====
-
-=== Creating from Method Names
-
-|====
-
 |After|findByLastModifiedAfter|q=last_modified:{?0 TO *]
 |Like|findByNameLike|q=name:?0*
 |NotLike|findByNameNotLike|q=-name:?0*
@@ -173,13 +236,6 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 |Containing|findByNameContaining|q=name:*?0*
 |Matches|findByNameMatches|q=name:?0
 |In|findByNameIn(Collection<String> names)|q=name:(?0…​ )
-
-|====
-
-=== Creating from Method Names
-
-|====
-
 |NotIn|findByNameNotIn(Collection<String> names)|q=-name:(?0…​ )
 |Within|findByStoreWithin(Point, Distance)|q={!geofilt pt=?0.latitude,?0.longitude sfield=store d=?1}
 |Near|findByStoreNear(Point, Distance)|q={!bbox pt=?0.latitude,?0.longitude sfield=store d=?1}
@@ -198,13 +254,110 @@ q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}
 |====
 
 === Using @Query
+
+=== Find By Name
+
 [source, language="java"]
 ----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
 
-    @Query("name:?0")
-    Collection<Store> findByNameQuery(final String name);
+  /**
+  * find stores by name
+  *
+  * @param name the name of store
+  * @return a collection of stores, where the input match
+  */
+  @Query("name:?0")
+  Collection<StarbucksStore> findByNameQuery(final String name);
 
 }
 ----
+
+=== Filter Queries
+
+=== Find By Name
+
+[source, language="java"]
+----
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
+
+    /**
+     * find stores by name
+     *
+     * @param name the name of store
+     * @return a collection of stores, where the input match
+     */
+    @Query(value = "*:*", filters = {"name:=?0"})
+    Collection<StarbucksStore> findByNameFilterQuery(@Param("name") final String name);
+
+}
+----
+
+----
+    q=*:*&fq=name:?0
+----
+
+=== Faceting
+
+=== Facets of all Products
+
+[source, language="java"]
+----
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String>{
+
+    /**
+     * find all stores
+     *
+     * @param page input page
+     * @return a facet of the products of stores, where the input matches
+     */
+    @Query(value = "*:*")
+    @Facet(fields = {"products"})
+    FacetPage<StarbucksStore> findByFacetOnProducts(final Pageable page);
+
+}
+----
+
+----
+    q=*:*&facet.field=products
+----
+
+=== Facets of all Products
+[source, language="java"]
+----
+@Autowired
+private StarbucksStoreRepository starbucksStoreRepository;
+
+....
+
+final FacetPage<StarbucksStore> response = starbucksStoreRepository.findByFacetOnProducts(new
+                PageRequest(0, 100));
+
+final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("products");
+
+List<FacetFieldEntry> content = facetResultPage.getContent();
+
+for (final FacetFieldEntry facetFieldEntry : content) {
+     System.err.println("Found: " + facetFieldEntry.getValue());
+}
+
+....
+
+----
+
+=== Facets of all Products
+
+----
+Found: food
+Found: oven
+Found: warmed
+Found: lunch
+Found: espresso
+Found: machine
+Found: sirena
+Found: amenity
+Found: reserve
+Found: batch
+----
+
+

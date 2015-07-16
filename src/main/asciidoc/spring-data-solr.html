@@ -90,27 +90,39 @@ table.CodeRay td.code>pre{padding:0}
 <section id="_table_of_content"><h2>Table of Content</h2><div class="ulist"><ul><li><p>Spring Data</p></li><li><p>Spring Data Solr</p></li><li><p>Spring Data Rest</p></li></ul></div></section>
 <section><section id="_spring_data"><h2>Spring Data</h2><div class="imageblock" style=""><div class="content"><img src="data:image/png;base64,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" alt="spring data project logo" /></div></div></section><section id="_project_goals"><h2>Project Goals</h2><div class="ulist"><ul><li><p>Easy access to data store technologies</p><div class="ulist"><ul><li><p>RDBMS</p></li><li><p>Non-RDBMS</p></li><li><p>Map-Reduced Frameworks</p></li><li><p>Cloud Bases Services</p></li></ul></div></li></ul></div></section><section id="_supported_stores"><h2>Supported Stores</h2><div class="paragraph"><p><a href="http://projects.spring.io/spring-data">Spring Data Project</a></p></div></section></section>
 <section id="_spring_data_solr"><h2>Spring Data Solr</h2></section>
-<section id="_what_you_get"><h2>What You Get</h2><div class="ulist"><ul><li><p>High level repository abstractions with multicore support</p></li><li><p>Annotations for Boost-, Facet- and Highlighting</p></li><li><p>Customizable type mappings and type conversions</p></li><li><p>Solr template supporting fluent query api</p></li><li><p>Exception translation to Spring&#8217;s portable Data Access exception hierarchy</p></li></ul></div></section>
-<section><section id="_getting_started"><h2>Getting Started</h2><div class="ulist"><ul><li><p>Main Components</p><div class="ulist"><ul><li><p>SolrDocument</p></li><li><p>SolrServer</p></li><li><p>SolrTemplate</p></li><li><p>SolrRepositories</p></li></ul></div></li></ul></div></section><section id="_solr_document"><h2>Solr Document</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@SolrDocument</span>
-<span class="directive">public</span> <span class="type">class</span> <span class="class">Store</span> {
+<section id="_what_you_get"><h2>What You Get</h2><div class="ulist"><ul><li class="fragment"><p>High level repository abstractions with multicore support</p></li><li class="fragment"><p>Annotations for Boost-, Facet- and Highlighting</p></li><li class="fragment"><p>Customizable type mappings and type conversions</p></li><li class="fragment"><p>Solr template supporting fluent query api</p></li><li class="fragment"><p>Exception translation to Spring&#8217;s portable Data Access exception hierarchy</p></li></ul></div></section>
+<section><section id="_starbucks_app"><h2>Starbucks App</h2></section><section id="_getting_started"><h2>Getting Started</h2><div class="ulist"><ul><li><p>Main Components</p><div class="ulist"><ul><li><p>SolrDocument</p></li><li><p>SolrServer</p></li><li><p>SolrTemplate</p></li><li><p>SolrRepositories</p></li></ul></div></li></ul></div></section><section id="_solr_document"><h2>Solr Document</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">string</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">required</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiValued</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">street</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiValued</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+<span class="tag">&lt;field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">services</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text_general</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">indexed</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">stored</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">multiValued</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span></code></pre></div></div></section><section id="_solr_document_2"><h2>Solr Document</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@SolrDocument</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">StarbucksStore</span> {
+   <span class="annotation">@Id</span>
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> id;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> name;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> zipCode;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> city;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">street</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> street;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">services</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; services;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Point</span> location;
+}</code></pre></div></div></section><section id="_solr_server"><h2>Solr Server</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${solr.solr.home}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> solrHome;
 
-    <span class="annotation">@Id</span>
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> id;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> name;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> zipCode;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> city;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">street</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> street;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">Point</span> location;
-}</code></pre></div></div></section><section id="_solr_server"><h2>Solr Server</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@Bean</span>
 <span class="directive">public</span> EmbeddedSolrServerFactoryBean solrServer() {
-  <span class="directive">final</span> EmbeddedSolrServerFactoryBean factoryBean
-      = <span class="keyword">new</span> EmbeddedSolrServerFactoryBean();
+  <span class="directive">final</span> EmbeddedSolrServerFactoryBean factoryBean = <span class="keyword">new</span> EmbeddedSolrServerFactoryBean();
   factoryBean.setSolrHome(solrHome);
   <span class="keyword">return</span> factoryBean;
 }</code></pre></div></div></section><section id="_solr_server_2"><h2>Solr Server</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;beans</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span><span class="delimiter">&quot;</span></span>
@@ -128,130 +140,247 @@ table.CodeRay td.code>pre{padding:0}
 <span class="annotation">@Bean</span>
 <span class="directive">public</span> SolrTemplate solrTemplate() <span class="directive">throws</span> <span class="exception">Exception</span>{
     <span class="keyword">return</span> <span class="keyword">new</span> SolrTemplate(solrServer);
-}</code></pre></div></div></section><section id="_solr_repository"><h2>Solr Repository</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
-}
+}</code></pre></div></div></section><section id="_solr_repository"><h2>Solr Repository</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt; {
 
-<span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreRepository</span>
-        <span class="directive">extends</span> SolrCrudRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
+}</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@SpringBootApplication</span>
+<span class="annotation">@EnableSolrRepositories</span>(basePackages = <span class="string"><span class="delimiter">&quot;</span><span class="content">org.tuxdevelop.spring.data.solr.demo.repository</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">StarbucksApplication</span> {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> SolrInitializer solrInitializer;
+
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="directive">final</span> <span class="predefined-type">String</span><span class="type">[]</span> args) {
+        SpringApplication.run(StarbucksApplication.class, args);
+    }
+
+    <span class="annotation">@PostConstruct</span>
+    <span class="directive">public</span> <span class="type">void</span> init() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        solrInitializer.importStarbucks();
+    }
 }</code></pre></div></div></section></section>
 <section id="_features"><h2>Features</h2></section>
-<section><section id="_spring_data_repositories"><h2>Spring Data Repositories</h2></section><section id="_crud_operations"><h2>CRUD Operations</h2></section><section id="_crud_operations_2"><h2>CRUD Operations</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreCrudRepository</span>
-                <span class="directive">extends</span> SolrCrudRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
+<section><section id="_spring_data_repositories"><h2>Spring Data Repositories</h2></section><section id="_crud_operations"><h2>CRUD Operations</h2></section><section id="_crud_operations_2"><h2>CRUD Operations</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt; {
 
 }</code></pre></div></div>
 <div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
-<span class="directive">private</span> StoreCrudRepository storeCrudRepository;
+<span class="directive">private</span> StarbucksStoreRepository starbucksStoreRepository;
 
 ...
-    storeCrudRepository.save(store);
-    storeCrudRepository.save(storeCollection)
-    storeCrudRepository.delete(store);
-    storeCrudRepository.delete(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
-    storeCrudRepository.deteleAll();
-    storeCrudRepository.count();
-    storeCrudRepository.findOne(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
-    storeCrudRepository.findAll();
+private <span class="directive">final</span> StarbucksStore starbucksStore = <span class="keyword">new</span> StarbucksStore();
+starbucksStore.setId(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
+...
+    starbucksStoreRepository.save(starbucksStore);
+    starbucksStoreRepository.save(storeCollection)
+    starbucksStoreRepository.delete(starbucksStore);
+    starbucksStoreRepository.delete(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
+    starbucksStoreRepository.deteleAll();
+    <span class="directive">final</span> <span class="predefined-type">Long</span> count = starbucksStoreRepository.count();
+    <span class="directive">final</span> StarbucksStore foundStore = starbucksStoreRepository.findOne(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
+    <span class="directive">final</span> <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; stores = starbucksStoreRepository.findAll();
 ...</code></pre></div></div></section><section id="_creating_queries"><h2>Creating Queries</h2></section><section id="_creating_queries_2"><h2>Creating Queries</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@SolrDocument</span>
-<span class="directive">public</span> <span class="type">class</span> <span class="class">Store</span> {
+<span class="directive">public</span> <span class="type">class</span> <span class="class">StarbucksStore</span> {
+   <span class="annotation">@Id</span>
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> id;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> name;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> zipCode;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> city;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">street</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">String</span> street;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">services</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; services;
+   <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">private</span> <span class="predefined-type">Point</span> location;
+}</code></pre></div></div></section><section id="_creating_from_method_names"><h2>Creating from Method Names</h2></section><section id="_find_by_name"><h2>Find By Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
 
-    <span class="annotation">@Id</span>
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> id;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> name;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> zipCode;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> city;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">street</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">String</span> street;
-    <span class="annotation">@Field</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>)
-    <span class="directive">private</span> <span class="predefined-type">Point</span> location;
-}</code></pre></div></div></section><section id="_creating_from_method_names"><h2>Creating from Method Names</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
+    <span class="comment">/**
+     * find stores by name
+     *
+     * @param name the name of store
+     * @return a collection of stores, where the input match
+     */</span>
+    <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; findByName(<span class="directive">final</span> <span class="predefined-type">String</span> name);
 
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByName(<span class="directive">final</span> <span class="predefined-type">String</span> name);
-
-}</code></pre></div></div></section><section id="_creating_from_method_names_2"><h2>Creating from Method Names</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
-
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByName(<span class="directive">final</span> <span class="predefined-type">String</span> name);
-
-}</code></pre></div></div>
-<section id="_solr_query"><h2>Solr Query</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=name: ?0</code></pre></div></div></section></section><section id="_creating_from_method_names_3"><h2>Creating from Method Names</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
-
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByName(<span class="directive">final</span> <span class="predefined-type">String</span> name);
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByLocationNear(<span class="directive">final</span> <span class="predefined-type">Point</span> point,
-                                         <span class="directive">final</span> Distance distance);
-
-}</code></pre></div></div></section><section id="_creating_from_method_names_4"><h2>Creating from Method Names</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
-
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByName(<span class="directive">final</span> <span class="predefined-type">String</span> name);
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByLocationNear(<span class="directive">final</span> <span class="predefined-type">Point</span> point,
-                                         <span class="directive">final</span> Distance distance);
 
 }</code></pre></div></div>
-<section id="_solr_query_2"><h2>Solr Query</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>q={!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}</code></pre></div></div></section></section><section id="_creating_from_method_names_5"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">And</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameAndPopularity</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0 AND popularity:?1</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Or</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameOrPopularity</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0 OR popularity:?1</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Is</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByName</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Not</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNot</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:?0</p></td></tr></tbody></table></section><section id="_creating_from_method_names_6"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">IsNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIsNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:[* TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">IsNotNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIsNotNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:[* TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Between</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityBetween</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[?0 TO ?1]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">LessThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityLessThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[* TO ?0}</p></td></tr></tbody></table></section><section id="_creating_from_method_names_7"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">LessThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityLessThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[* TO ?0]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">GreaterThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityGreaterThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:{?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">GreaterThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityGreaterThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Before</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByLastModifiedBefore</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=last_modified:[* TO ?0}</p></td></tr></tbody></table></section><section id="_creating_from_method_names_8"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">After</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByLastModifiedAfter</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=last_modified:{?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Like</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">NotLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNotLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">StartingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameStartingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0*</p></td></tr></tbody></table></section><section id="_creating_from_method_names_9"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">EndingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameEndingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:*?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Containing</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameContaining</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:*?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Matches</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameMatches</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIn(Collection&lt;String&gt; names)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:(?0…​ )</p></td></tr></tbody></table></section><section id="_creating_from_method_names_10"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">NotIn</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNotIn(Collection&lt;String&gt; names)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:(?0…​ )</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Within</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreWithin(Point, Distance)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q={!geofilt pt=?0.latitude,?0.longitude sfield=store d=?1}</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Near</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreNear(Point, Distance)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q={!bbox pt=?0.latitude,?0.longitude sfield=store d=?1}</p></td></tr></tbody></table></section><section id="_creating_from_method_names_11"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Near</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreNear(Box)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=store[?0.start.latitude,?0.start.longitude TO ?0.end.latitude,?0.end.longitude]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">True</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableTrue</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:true</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableFalse</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:false</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">OrderBy</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableTrueOrderByNameDesc</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:true&amp;sort=name desc</p></td></tr></tbody></table></section><section id="_using_query"><h2>Using @Query</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StoreFinderRepository</span>
-        <span class="directive">extends</span> SolrRepository&lt;Store, <span class="predefined-type">String</span>&gt; {
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=name: ?0</code></pre></div></div></section><section id="_find_by_name_2"><h2>Find By Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> StarbucksStoreRepository starbucksStoreRepository;
 
-    <span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name:?0</span><span class="delimiter">&quot;</span></span>)
-    <span class="predefined-type">Collection</span>&lt;Store&gt; findByNameQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name);
+...
+    Collection&lt;StarbucksStore&gt; result = starbucksStoreRepository.findByName(<span class="string"><span class="delimiter">&quot;</span><span class="content">Boston</span><span class="delimiter">&quot;</span></span>);
+...</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=name: 'Boston'</code></pre></div></div></section><section id="_find_by_products"><h2>Find By Products</h2></section><section id="_find_by_products_2"><h2>Find By Products</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
 
-}</code></pre></div></div></section></section>
-<section><section id="_solr_operations"><h2>Solr Operations</h2></section><section id="_partial_updates"><h2>Partial Updates</h2></section><section id="_partial_updates_2"><h2>Partial Updates</h2><div class="ulist"><ul><li><p>Update the products of an existing Store</p></li></ul></div></section><section id="_partial_updates_3"><h2>Partial Updates</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+    <span class="comment">/**
+     * find all stores whoch provides the given products
+     *
+     * @param products products query parameter
+     * @return a collection of stores, where the input match
+     */</span>
+     <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; findByProductsIn(<span class="directive">final</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products);
+
+}</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=products:(?0…​ )</code></pre></div></div></section><section id="_find_by_products_3"><h2>Find By Products</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> StarbucksStoreRepository starbucksStoreRepository;
+
+...
+    final <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;&gt;();
+    products.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">food</span><span class="delimiter">&quot;</span></span>);
+    products.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">lunch</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; result = starbucksStoreRepository.findByProductsIn(products);
+...</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>q=products:('food' 'lunch')</code></pre></div></div></section><section id="_find_by_location"><h2>Find By Location</h2></section><section id="_find_by_location_2"><h2>Find By Location</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
+     <span class="comment">/**
+     * find all stores which provides the given products and are
+     * next to a geo point and given distance
+     *
+     * @param products products query parameter
+     * @param point    geo location
+     * @param distance radius distance to the geo point
+     * @return a collection of stores, where the input match
+     */</span>
+    <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; findByProductsInAndLocationNear(<span class="directive">final</span> <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products,
+                                                               <span class="directive">final</span> <span class="predefined-type">Point</span> point,
+                                                               <span class="directive">final</span> Distance distance);
+}</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=products:(?0…​ ) AND {!bbox pt=?0.latitude,?0.longitude sfield=location d=?1}</code></pre></div></div></section><section id="_find_by_location_3"><h2>Find By Location</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> StarbucksStoreRepository starbucksStoreRepository;
+    ...
+    final <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products = <span class="keyword">new</span> <span class="predefined-type">LinkedList</span>&lt;&gt;();
+    products.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">food</span><span class="delimiter">&quot;</span></span>);
+    products.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">lunch</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="directive">final</span> <span class="predefined-type">Point</span> point = <span class="keyword">new</span> <span class="predefined-type">Point</span>(<span class="float">72D</span>, -<span class="float">42D</span>);
+    <span class="directive">final</span> Distance distance = <span class="keyword">new</span> Distance(<span class="float">100D</span>);
+
+    <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; result = starbucksStoreRepository
+                        .findByProductsInAndLocationNear(products,point,distance);
+    ...</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=products:('food' 'lunch') AND {!bbox pt=72,-42 sfield=location d=100}</code></pre></div></div></section><section id="_creating_from_method_names_2"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">And</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameAndPopularity</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0 AND popularity:?1</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Or</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameOrPopularity</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0 OR popularity:?1</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Is</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByName</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Not</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNot</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">IsNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIsNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:[* TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">IsNotNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIsNotNull</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:[* TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Between</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityBetween</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[?0 TO ?1]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">LessThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityLessThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[* TO ?0}</p></td></tr></tbody></table></section><section id="_creating_from_method_names_3"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">LessThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityLessThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[* TO ?0]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">GreaterThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityGreaterThan</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:{?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">GreaterThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByPopularityGreaterThanEqual</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=popularity:[?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Before</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByLastModifiedBefore</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=last_modified:[* TO ?0}</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">After</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByLastModifiedAfter</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=last_modified:{?0 TO *]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Like</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">NotLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNotLike</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">StartingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameStartingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0*</p></td></tr></tbody></table></section><section id="_creating_from_method_names_4"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">EndingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameEndingWith</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:*?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Containing</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameContaining</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:*?0*</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Matches</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameMatches</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:?0</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">In</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameIn(Collection&lt;String&gt; names)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=name:(?0…​ )</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">NotIn</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByNameNotIn(Collection&lt;String&gt; names)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=-name:(?0…​ )</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Within</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreWithin(Point, Distance)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q={!geofilt pt=?0.latitude,?0.longitude sfield=store d=?1}</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Near</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreNear(Point, Distance)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q={!bbox pt=?0.latitude,?0.longitude sfield=store d=?1}</p></td></tr></tbody></table></section><section id="_creating_from_method_names_5"><h2>Creating from Method Names</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33%" /><col style="width:33%" /><col style="width:33%" /></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Near</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByStoreNear(Box)</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=store[?0.start.latitude,?0.start.longitude TO ?0.end.latitude,?0.end.longitude]</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">True</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableTrue</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:true</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">False</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableFalse</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:false</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">OrderBy</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">findByAvailableTrueOrderByNameDesc</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">q=inStock:true&amp;sort=name desc</p></td></tr></tbody></table></section><section id="_using_query"><h2>Using @Query</h2></section><section id="_find_by_name_3"><h2>Find By Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
+
+  <span class="comment">/**
+  * find stores by name
+  *
+  * @param name the name of store
+  * @return a collection of stores, where the input match
+  */</span>
+  <span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name:?0</span><span class="delimiter">&quot;</span></span>)
+  <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; findByNameQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name);
+
+}</code></pre></div></div></section><section id="_filter_queries"><h2>Filter Queries</h2></section><section id="_find_by_name_4"><h2>Find By Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
+
+    <span class="comment">/**
+     * find stores by name
+     *
+     * @param name the name of store
+     * @return a collection of stores, where the input match
+     */</span>
+    <span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>, filters = {<span class="string"><span class="delimiter">&quot;</span><span class="content">name:=?0</span><span class="delimiter">&quot;</span></span>})
+    <span class="predefined-type">Collection</span>&lt;StarbucksStore&gt; findByNameFilterQuery(<span class="annotation">@Param</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>) <span class="directive">final</span> <span class="predefined-type">String</span> name);
+
+}</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=*:*&amp;fq=name:?0</code></pre></div></div></section><section id="_faceting"><h2>Faceting</h2></section><section id="_facets_of_all_products"><h2>Facets of all Products</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">StarbucksStoreRepository</span> <span class="directive">extends</span> SolrCrudRepository&lt;StarbucksStore, <span class="predefined-type">String</span>&gt;{
+
+    <span class="comment">/**
+     * find all stores
+     *
+     * @param page input page
+     * @return a facet of the products of stores, where the input matches
+     */</span>
+    <span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>)
+    <span class="annotation">@Facet</span>(fields = {<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>})
+    FacetPage&lt;StarbucksStore&gt; findByFacetOnProducts(<span class="directive">final</span> <span class="predefined-type">Pageable</span> page);
+
+}</code></pre></div></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code>    q=*:*&amp;facet.field=products</code></pre></div></div></section><section id="_facets_of_all_products_2"><h2>Facets of all Products</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> StarbucksStoreRepository starbucksStoreRepository;
+
+....
+
+final FacetPage&lt;StarbucksStore&gt; response = starbucksStoreRepository.findByFacetOnProducts(<span class="keyword">new</span>
+                PageRequest(<span class="integer">0</span>, <span class="integer">100</span>));
+
+<span class="directive">final</span> Page&lt;FacetFieldEntry&gt; facetResultPage = response.getFacetResultPage(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>);
+
+<span class="predefined-type">List</span>&lt;FacetFieldEntry&gt; content = facetResultPage.getContent();
+
+<span class="keyword">for</span> (<span class="directive">final</span> FacetFieldEntry facetFieldEntry : content) {
+     <span class="predefined-type">System</span>.err.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Found: </span><span class="delimiter">&quot;</span></span> + facetFieldEntry.getValue());
+}
+
+....</code></pre></div></div></section><section id="_facets_of_all_products_3"><h2>Facets of all Products</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code>Found: food
+Found: oven
+Found: warmed
+Found: lunch
+Found: espresso
+Found: machine
+Found: sirena
+Found: amenity
+Found: reserve
+Found: batch</code></pre></div></div></section></section>
+<section><section id="_solr_template_operations"><h2>Solr Template Operations</h2></section><section id="_filter_query"><h2>Filter Query</h2></section><section id="_find_by_name_5"><h2>Find By Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="predefined-type">Collection</span>&lt;Store&gt; FindStoreByNameFilterQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name){
+   <span class="directive">final</span> SimpleQuery query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria());
+
+   <span class="directive">final</span> FilterQuery filterQuery = <span class="keyword">new</span> SimpleFilterQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>).is(name));
+
+   query.addFilterQuery(filterQuery);
+
+   ScoredPage&lt;Store&gt; result = solrTemplate.queryForPage(query, Store.class);
+   <span class="keyword">return</span> result.getContent();
+}</code></pre></div></div></section><section id="_faceting_2"><h2>Faceting</h2></section><section id="_facet_on_name"><h2>Facet on Name</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
+<span class="directive">public</span> FacetPage&lt;Store&gt; findFacetOnNameSolrTemplate(<span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; products) {
+
+  <span class="directive">final</span> <span class="predefined-type">String</span> parameter = convertListToParameterString(products);
+
+  <span class="directive">final</span> FacetQuery facetQuery = <span class="keyword">new</span> SimpleFacetQuery(<span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>))
+                                           .setFacetOptions(<span class="keyword">new</span> FacetOptions(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>));
+
+  <span class="directive">final</span> FilterQuery filterQuery = <span class="keyword">new</span> SimpleFilterQuery(
+                                    <span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">products:</span><span class="delimiter">&quot;</span></span> + parameter));
+
+  facetQuery.setPageRequest(<span class="keyword">new</span> PageRequest(<span class="integer">0</span>, <span class="integer">20</span>));
+
+  facetQuery.addFilterQuery(filterQuery);
+
+  <span class="keyword">return</span> solrTemplate.queryForFacetPage(facetQuery, Store.class);
+}</code></pre></div></div></section><section id="_grouping"><h2>Grouping</h2></section><section id="_group_by_city"><h2>Group By City</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Override</span>
+  <span class="directive">public</span> GroupPage&lt;StarbucksStore&gt; findByLocationAndgroupByCity(
+                                                        <span class="directive">final</span> <span class="predefined-type">Point</span> point,
+                                                        <span class="directive">final</span> Distance distance,
+                                                        <span class="directive">final</span> <span class="predefined-type">Integer</span> pageNumber) {
+
+        <span class="directive">final</span> <span class="predefined-type">Field</span> cityField = <span class="keyword">new</span> SimpleField(<span class="string"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>);
+
+        <span class="directive">final</span> <span class="predefined-type">Query</span> query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>).near(point, distance));
+
+        <span class="directive">final</span> GroupOptions groupOptions = <span class="keyword">new</span> GroupOptions().addGroupByField(cityField);
+
+        query.setGroupOptions(groupOptions);
+
+        query.setPageRequest(<span class="keyword">new</span> PageRequest(pageNumber, <span class="integer">20</span>));
+
+        <span class="keyword">return</span> solrTemplate.queryForGroupPage(query, StarbucksStore.class);
+  }</code></pre></div></div></section><section id="_partial_updates"><h2>Partial Updates</h2></section><section id="_update_the_products_of_an_existing_store"><h2>Update the products of an existing Store</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Autowired</span>
 <span class="directive">private</span> SolrTemplate solrTemplate;
 
 <span class="annotation">@Override</span>
 <span class="directive">public</span> <span class="type">void</span> updateProducts(<span class="predefined-type">String</span> id, <span class="predefined-type">Collection</span>&lt;<span class="predefined-type">String</span>&gt; products) {
+
     <span class="directive">final</span> PartialUpdate partialUpdate = <span class="keyword">new</span> PartialUpdate(<span class="string"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>, id);
+
     partialUpdate.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>, products);
+
     solrTemplate.saveBean(partialUpdate);
+
     solrTemplate.commit();
-}</code></pre></div></div></section><section id="_filter_query"><h2>Filter Query</h2></section><section id="_filter_query_2"><h2>Filter Query</h2><div class="ulist"><ul><li><p>Find Stores by Name, using Filter Query</p></li></ul></div></section><section id="_filter_query_3"><h2>Filter Query</h2><section id="__query_annotation"><h2>@Query Annotation</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>, filters = {<span class="string"><span class="delimiter">&quot;</span><span class="content">name:=?0</span><span class="delimiter">&quot;</span></span>})
-<span class="predefined-type">Collection</span>&lt;Store&gt; findByNameFilterQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name);</code></pre></div></div></section></section><section id="_filter_query_4"><h2>Filter Query</h2><section id="_solr_template_2"><h2>Solr Template</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="predefined-type">Collection</span>&lt;Store&gt; FindStoreByNameFilterQuery(<span class="directive">final</span> <span class="predefined-type">String</span> name){
-   <span class="directive">final</span> SimpleQuery query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria());
-   <span class="directive">final</span> FilterQuery filterQuery =
-            <span class="keyword">new</span> SimpleFilterQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>).is(name));
-   query.addFilterQuery(filterQuery);
-   ScoredPage&lt;Store&gt; result =
-            solrTemplate.queryForPage(query, Store.class);
-   <span class="keyword">return</span> result.getContent();
-}</code></pre></div></div></section></section><section id="_faceting"><h2>Faceting</h2></section><section id="_faceting_2"><h2>Faceting</h2><div class="ulist"><ul><li><p>Find stores by product, using Filter and "facet" by name</p></li><li><p>Find stores by zipCode and "facet" by products</p></li></ul></div></section><section id="_faceting_3"><h2>Faceting</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>, filters = <span class="string"><span class="delimiter">&quot;</span><span class="content">products:?0</span><span class="delimiter">&quot;</span></span>)
-<span class="annotation">@Facet</span>(fields = {<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>})
-FacetPage&lt;Store&gt; findFacetOnName(<span class="annotation">@Param</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>)
-        <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; products, <span class="directive">final</span> <span class="predefined-type">Pageable</span> page);</code></pre></div></div>
-<div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode:?0</span><span class="delimiter">&quot;</span></span>)
-<span class="annotation">@Facet</span>(fields = {<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>})
-FacetPage&lt;Store&gt; findByZipCodeFacetOnProducts(
-    <span class="annotation">@Param</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>) <span class="directive">final</span> <span class="predefined-type">String</span> zipCode,
-    <span class="directive">final</span> <span class="predefined-type">Pageable</span> page);</code></pre></div></div></section><section id="_faceting_4"><h2>Faceting</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
-<span class="directive">public</span> FacetPage&lt;Store&gt; findFacetOnNameSolrTemplate(
-        <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; products) {
-  <span class="directive">final</span> <span class="predefined-type">String</span> parameter = convertListToParameterString(products);
-  <span class="directive">final</span> FacetQuery facetQuery = <span class="keyword">new</span> SimpleFacetQuery(
-                <span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>))
-      .setFacetOptions(<span class="keyword">new</span> FacetOptions(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>));
-  <span class="directive">final</span> FilterQuery filterQuery = <span class="keyword">new</span> SimpleFilterQuery(
-                <span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">products:</span><span class="delimiter">&quot;</span></span> + parameter));
-  facetQuery.setPageRequest(<span class="keyword">new</span> PageRequest(<span class="integer">0</span>, <span class="integer">20</span>));
-  facetQuery.addFilterQuery(filterQuery);
-  <span class="keyword">return</span> solrTemplate.queryForFacetPage(facetQuery, Store.class);
-}</code></pre></div></div></section><section id="_grouping"><h2>Grouping</h2></section><section id="_grouping_2"><h2>Grouping</h2><div class="ulist"><ul><li><p>Find Stores by products and group by zipCode</p></li></ul></div></section><section id="_grouping_3"><h2>Grouping</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Override</span>
-<span class="directive">public</span> GroupPage&lt;Store&gt; groupByZipCode(<span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; products) {
-  <span class="directive">final</span> <span class="predefined-type">Field</span> zipCodeField = <span class="keyword">new</span> SimpleField(<span class="string"><span class="delimiter">&quot;</span><span class="content">zipCode</span><span class="delimiter">&quot;</span></span>);
-  <span class="directive">final</span> <span class="predefined-type">Query</span> query = <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> Criteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">products</span><span class="delimiter">&quot;</span></span>)
-            .contains(products));
-  <span class="directive">final</span> SimpleQuery groupQuery =
-             <span class="keyword">new</span> SimpleQuery(<span class="keyword">new</span> SimpleStringCriteria(<span class="string"><span class="delimiter">&quot;</span><span class="content">*:*</span><span class="delimiter">&quot;</span></span>));
-  <span class="directive">final</span> GroupOptions groupOptions = <span class="keyword">new</span> GroupOptions()
-      .addGroupByField(zipCodeField)
-      .addGroupByQuery(query);
-   groupQuery.setGroupOptions(groupOptions);
-   <span class="keyword">return</span> solrTemplate.queryForGroupPage(groupQuery, Store.class)
 }</code></pre></div></div></section><section id="_more_operations"><h2>More Operations</h2><div class="ulist"><ul><li><p>Field Stats</p></li><li><p>Pivot Faceting</p></li><li><p>Terms</p></li><li><p>Time allowed for a search</p></li><li><p>Boost document Score</p></li></ul></div></section><section id="_more_operations_2"><h2>More Operations</h2><div class="ulist"><ul><li><p>Select Request Handler</p></li><li><p>Using Join</p></li><li><p>Highlighting</p></li><li><p>Using Functions</p></li><li><p>Realtime Get</p></li></ul></div></section></section>
 <section><section id="_spring_data_rest"><h2>Spring Data Rest</h2></section><section id="_spring_data_rest_2"><h2>Spring Data Rest</h2><div class="ulist"><ul><li><p>Expose CRUD Operations of managed Entities</p></li><li><p>Expose Finder Methods of Repositories</p></li></ul></div></section><section id="_live_demo"><h2>Live Demo</h2><div class="ulist"><ul><li><p>Starbucks Demo</p></li></ul></div></section></section>
 <section id="_questions"><h2>Questions ?</h2></section>
@@ -262,7 +391,7 @@ Reveal.initialize({
   // Display a presentation progress bar
   progress: true,
   // Display the page number of the current slide
-  slideNumber: false,
+  slideNumber: true,
   // Push each slide change to the browser history
   history: false,
   // Enable keyboard shortcuts for navigation
@@ -293,7 +422,7 @@ Reveal.initialize({
   // Hides the address bar on mobile devices
   hideAddressBar: true,
   // Opens links in an iframe preview overlay
-  previewLinks: false,
+  previewLinks: true,
   // Theme (e.g., beige, black, blood, league, moon, night, serif, simple, sky, solarized, white)
   // NOTE setting the theme in the config no longer works in reveal.js 3.x
   //theme: Reveal.getQueryHash().theme || 'solarized_tux',

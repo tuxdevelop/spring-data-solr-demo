@@ -1,4 +1,6 @@
-== Getting Started
+== Starbucks App
+
+=== Getting Started
 
 * Main Components
 ** SolrDocument
@@ -7,24 +9,42 @@
 ** SolrRepositories
 
 === Solr Document
+
+[source,language="xml"]
+----
+<field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+<field name="name" type="text_general" indexed="true" stored="true"/>
+<field name="zipCode" type="text_general" indexed="true" stored="true"/>
+<field name="city" type="text_general" indexed="true" stored="true"/>
+<field name="location" type="location" indexed="true" stored="true"/>
+<field name="street" type="text_general" indexed="true" stored="true"/>
+<field name="products" type="text_general" indexed="true" stored="true" multiValued="true"/>
+<field name="services" type="text_general" indexed="true" stored="true" multiValued="true"/>
+----
+
+=== Solr Document
+
 [source, language="java"]
 ----
 @SolrDocument
-public class Store {
-
-    @Id
-    @Field("id")
-    private String id;
-    @Field("name")
-    private String name;
-    @Field("zipCode")
-    private String zipCode;
-    @Field("city")
-    private String city;
-    @Field("street")
-    private String street;
-    @Field("location")
-    private Point location;
+public class StarbucksStore {
+   @Id
+   @Field("id")
+   private String id;
+   @Field("name")
+   private String name;
+   @Field("zipCode")
+   private String zipCode;
+   @Field("city")
+   private String city;
+   @Field("street")
+   private String street;
+   @Field("products")
+   private Collection<String> products;
+   @Field("services")
+   private Collection<String> services;
+   @Field("location")
+   private Point location;
 }
 ----
 
@@ -32,10 +52,13 @@ public class Store {
 
 [source, language="java"]
 ----
+
+@Value("${solr.solr.home}")
+private String solrHome;
+
 @Bean
 public EmbeddedSolrServerFactoryBean solrServer() {
-  final EmbeddedSolrServerFactoryBean factoryBean
-      = new EmbeddedSolrServerFactoryBean();
+  final EmbeddedSolrServerFactoryBean factoryBean = new EmbeddedSolrServerFactoryBean();
   factoryBean.setSolrHome(solrHome);
   return factoryBean;
 }
@@ -45,6 +68,7 @@ public EmbeddedSolrServerFactoryBean solrServer() {
 
 [source, language="xml"]
 ----
+
 <beans xmlns="http://www.springframework.org/schema/beans"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:solr="http://www.springframework.org/schema/data/solr"
@@ -55,12 +79,14 @@ public EmbeddedSolrServerFactoryBean solrServer() {
 
  <solr:solr-server id="solrServer" url="http://locahost:8983/solr" />
 </beans>
+
 ----
 
 === Solr Template
 
 [source, language="java"]
 ----
+
 @Autowired
 private SolrServer solrServer
 
@@ -68,17 +94,35 @@ private SolrServer solrServer
 public SolrTemplate solrTemplate() throws Exception{
     return new SolrTemplate(solrServer);
 }
+
 ----
 
 === Solr Repository
 
 [source, language="java"]
 ----
-public interface StoreFinderRepository
-        extends SolrRepository<Store, String> {
-}
+public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksStore, String> {
 
-public interface StoreRepository
-        extends SolrCrudRepository<Store, String> {
 }
 ----
+
+[source, language="java"]
+----
+@SpringBootApplication
+@EnableSolrRepositories(basePackages = "org.tuxdevelop.spring.data.solr.demo.repository")
+public class StarbucksApplication {
+
+    @Autowired
+    private SolrInitializer solrInitializer;
+
+    public static void main(final String[] args) {
+        SpringApplication.run(StarbucksApplication.class, args);
+    }
+
+    @PostConstruct
+    public void init() throws Exception {
+        solrInitializer.importStarbucks();
+    }
+}
+----
+

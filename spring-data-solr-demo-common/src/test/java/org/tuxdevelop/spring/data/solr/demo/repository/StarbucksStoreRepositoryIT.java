@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ITConfiguration.class)
-public class StoreRepositoryIT {
+public class StarbucksStoreRepositoryIT {
 
     @Autowired
     private StarbucksStoreRepository starbucksStoreRepository;

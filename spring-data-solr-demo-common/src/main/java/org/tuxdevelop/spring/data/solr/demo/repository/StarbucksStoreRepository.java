@@ -32,7 +32,7 @@ public interface StarbucksStoreRepository extends SolrCrudRepository<StarbucksSt
      * @return a collection of stores, where the input match
      */
     Collection<StarbucksStore> findByProductsIn(@Param("products") final Collection<String> products);
-
+    
     /**
      * find all stores which provides the given products and are next to a geo point and given distance
      *
