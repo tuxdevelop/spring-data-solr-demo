@@ -19,26 +19,44 @@
 <div th:include="fragments/header :: header"></div>
 <div class="viewport">
     <div class="container">
-        <p>
+        <div class="page-header">
+            <p>
 
-        <h2>Starbucks Store Search App</h2>
-        </p>
-        <p>
+            <h2>Starbucks Store Search App</h2>
+            </p>
+            <p>
 
-        <h3>This demo application bases on</h3>
-        </p>
-
-        <p>
-            <img th:src="@{img/spring-data-project-logo.png}" src="#" th:width="150" th:height="270"/>
-        </p>
-
-        <p>
-            <img th:src="@{img/apache_solr.png}" src="#" th:width="150" th:height="270"/>
-        </p>
-
-        <p>
-            <img th:src="@{img/thymeleaf_logo.png}" src="#" th:width="270" th:height="150"/>
-        </p>
+            <h3>This demo application is based on</h3>
+            </p>
+        </div>
+        <table class="table table-hover">
+            <tbody>
+            <tr>
+                <td>
+                    <img th:src="@{img/spring-data-project-logo.png}" src="#" th:width="80" th:height="200"/>
+                </td>
+                <td>
+                    <h4><a href="http://projects.spring.io/spring-data-solr/">Spring Data Solr</a></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img th:src="@{img/apache_solr.png}" src="#" th:width="130" th:height="250"/>
+                </td>
+                <td>
+                    <h4><a href="http://lucene.apache.org/solr/">Apache Solr 4.10</a></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img th:src="@{img/thymeleaf_logo.png}" src="#" th:width="250" th:height="130"/>
+                </td>
+                <td>
+                    <h4><a href="http://www.thymeleaf.org/">Thymeleaf</a></h4>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
