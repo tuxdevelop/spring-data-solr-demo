@@ -4,11 +4,11 @@ image::spring-data-project-logo.png[]
 
 === Project Goals
 
-* Easy access to data store technologies
+* Easy access to data storage technologies
 ** RDBMS
 ** Non-RDBMS
-** Map-Reduced Frameworks
-** Cloud Bases Services
+** MapReduced Frameworks
+** Cloud Based Services
 
 === Supported Stores
 

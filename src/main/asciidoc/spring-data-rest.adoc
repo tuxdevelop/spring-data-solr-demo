@@ -2,8 +2,8 @@
 
 === Spring Data Rest
 
-* Expose CRUD Operations of managed Entities
-* Expose Finder Methods of Repositories
+* Expose CRUD operations of managed entities
+* Expose finder methods of repositories
 
 === Live Demo
 

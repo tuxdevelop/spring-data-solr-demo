@@ -338,7 +338,7 @@ final Page<FacetFieldEntry> facetResultPage = response.getFacetResultPage("produ
 List<FacetFieldEntry> content = facetResultPage.getContent();
 
 for (final FacetFieldEntry facetFieldEntry : content) {
-     System.err.println("Found: " + facetFieldEntry.getValue());
+     log.info("Found: " + facetFieldEntry.getValue());
 }
 
 ....

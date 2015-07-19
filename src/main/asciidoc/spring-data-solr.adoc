@@ -21,7 +21,7 @@ Marcel Becker <marcel.becker@1und1.de>
 * Mail
 ** mailto:marcel.becker@1und1.de[marcel.becker@1und1.de]
 
-== Table of Content
+== Table of Contents
 
 * Spring Data
 * Spring Data Solr

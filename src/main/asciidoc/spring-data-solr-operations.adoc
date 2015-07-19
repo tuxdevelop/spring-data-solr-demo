@@ -85,15 +85,6 @@ public FacetPage<Store> findFacetOnNameSolrTemplate(final List<String> products)
 
   final Page<GroupEntry<StarbucksStore>> groupEntries = groupResult.getGroupEntries();
 
-  for (final GroupEntry<StarbucksStore> groupEntry : groupEntries) {
-        final String groupValue = groupEntry.getGroupValue();
-        System.err.println("groupValue: " + groupValue);
-        final List<StarbucksStore> groupContet = groupEntry.getResult().getContent();
-        System.err.println("Members of the group: ");
-        for (final StarbucksStore starbucksStore : groupContet) {
-            System.err.println(starbucksStore);
-        }
-   }
 ----
 
 === Group By City
@@ -146,8 +137,8 @@ public void updateProducts(String id, Collection<String> products) {
 * Field Stats
 * Pivot Faceting
 * Terms
-* Time allowed for a search
-* Boost document Score
+* Time allowed for a search to finish
+* Boost document score
 
 === More Operations
 
